@@ -27,9 +27,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/std-s/Open-IM-SDK-Core.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '9.0'    
-  
-  s.source_files = '/**/*.{h,m}'
-  
+    
   valid_archs = ['armv7s','arm64','x86_64']
   s.xcconfig = {
     'VALID_ARCHS' =>  valid_archs.join(' '),
@@ -39,5 +37,4 @@ Pod::Spec.new do |s|
   }
   
   s.vendored_frameworks = 'Framework/*.xcframework'
-  s.dependency 'MJExtension'
 end
