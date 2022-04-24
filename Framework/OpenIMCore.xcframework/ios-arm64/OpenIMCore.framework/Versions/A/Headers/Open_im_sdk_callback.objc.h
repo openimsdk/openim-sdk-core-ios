@@ -29,6 +29,8 @@
 @class Open_im_sdk_callbackOnSignalingListener;
 @protocol Open_im_sdk_callbackOnUserListener;
 @class Open_im_sdk_callbackOnUserListener;
+@protocol Open_im_sdk_callbackOnWorkMomentsListener;
+@class Open_im_sdk_callbackOnWorkMomentsListener;
 @protocol Open_im_sdk_callbackSendMsgCallBack;
 @class Open_im_sdk_callbackSendMsgCallBack;
 
@@ -104,6 +106,10 @@
 - (void)onSelfInfoUpdated:(NSString* _Nullable)userInfo;
 @end
 
+@protocol Open_im_sdk_callbackOnWorkMomentsListener <NSObject>
+- (void)onRecvNewNotification;
+@end
+
 @protocol Open_im_sdk_callbackSendMsgCallBack <NSObject>
 - (void)onError:(int32_t)errCode errMsg:(NSString* _Nullable)errMsg;
 - (void)onProgress:(long)progress;
@@ -127,6 +133,8 @@
 @class Open_im_sdk_callbackOnSignalingListener;
 
 @class Open_im_sdk_callbackOnUserListener;
+
+@class Open_im_sdk_callbackOnWorkMomentsListener;
 
 @class Open_im_sdk_callbackSendMsgCallBack;
 
@@ -236,6 +244,14 @@
 
 - (nonnull instancetype)initWithRef:(_Nonnull id)ref;
 - (void)onSelfInfoUpdated:(NSString* _Nullable)userInfo;
+@end
+
+@interface Open_im_sdk_callbackOnWorkMomentsListener : NSObject <goSeqRefInterface, Open_im_sdk_callbackOnWorkMomentsListener> {
+}
+@property(strong, readonly) _Nonnull id _ref;
+
+- (nonnull instancetype)initWithRef:(_Nonnull id)ref;
+- (void)onRecvNewNotification;
 @end
 
 @interface Open_im_sdk_callbackSendMsgCallBack : NSObject <goSeqRefInterface, Open_im_sdk_callbackSendMsgCallBack> {
