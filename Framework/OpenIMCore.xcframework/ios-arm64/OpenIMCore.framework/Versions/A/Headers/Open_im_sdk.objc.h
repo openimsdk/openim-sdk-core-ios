@@ -125,6 +125,8 @@ FOUNDATION_EXPORT void Open_im_sdkGetConversationListSplit(id<Open_im_sdk_callba
  */
 FOUNDATION_EXPORT void Open_im_sdkGetConversationRecvMessageOpt(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationIDList);
 
+FOUNDATION_EXPORT void Open_im_sdkGetDepartmentInfo(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable departmentID);
+
 FOUNDATION_EXPORT void Open_im_sdkGetDepartmentMember(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable departmentID, long offset, long count);
 
 FOUNDATION_EXPORT void Open_im_sdkGetDepartmentMemberAndSubDepartment(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable departmentID);
@@ -152,6 +154,8 @@ FOUNDATION_EXPORT NSString* _Nonnull Open_im_sdkGetLoginUser(void);
 FOUNDATION_EXPORT void Open_im_sdkGetMultipleConversation(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationIDList);
 
 FOUNDATION_EXPORT void Open_im_sdkGetOneConversation(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, long sessionType, NSString* _Nullable sourceID);
+
+FOUNDATION_EXPORT void Open_im_sdkGetParentDepartmentList(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable departmentID);
 
 FOUNDATION_EXPORT void Open_im_sdkGetRecvFriendApplicationList(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
 
@@ -235,6 +239,8 @@ FOUNDATION_EXPORT void Open_im_sdkSearchFriends(id<Open_im_sdk_callbackBase> _Nu
 FOUNDATION_EXPORT void Open_im_sdkSearchGroups(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable searchParam);
 
 FOUNDATION_EXPORT void Open_im_sdkSearchLocalMessages(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable searchParam);
+
+FOUNDATION_EXPORT void Open_im_sdkSearchOrganization(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable input, long offset, long count);
 
 FOUNDATION_EXPORT void Open_im_sdkSendMessage(id<Open_im_sdk_callbackSendMsgCallBack> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable message, NSString* _Nullable recvID, NSString* _Nullable groupID, NSString* _Nullable offlinePushInfo);
 
