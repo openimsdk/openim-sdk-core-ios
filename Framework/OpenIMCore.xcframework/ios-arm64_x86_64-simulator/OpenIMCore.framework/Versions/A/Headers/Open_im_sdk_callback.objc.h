@@ -15,6 +15,8 @@
 @class Open_im_sdk_callbackBase;
 @protocol Open_im_sdk_callbackOnAdvancedMsgListener;
 @class Open_im_sdk_callbackOnAdvancedMsgListener;
+@protocol Open_im_sdk_callbackOnBatchMsgListener;
+@class Open_im_sdk_callbackOnBatchMsgListener;
 @protocol Open_im_sdk_callbackOnConnListener;
 @class Open_im_sdk_callbackOnConnListener;
 @protocol Open_im_sdk_callbackOnConversationListener;
@@ -44,6 +46,10 @@
 - (void)onRecvGroupReadReceipt:(NSString* _Nullable)groupMsgReceiptList;
 - (void)onRecvMessageRevoked:(NSString* _Nullable)msgID;
 - (void)onRecvNewMessage:(NSString* _Nullable)message;
+@end
+
+@protocol Open_im_sdk_callbackOnBatchMsgListener <NSObject>
+- (void)onRecvNewMessages:(NSString* _Nullable)messageList;
 @end
 
 @protocol Open_im_sdk_callbackOnConnListener <NSObject>
@@ -121,6 +127,8 @@
 
 @class Open_im_sdk_callbackOnAdvancedMsgListener;
 
+@class Open_im_sdk_callbackOnBatchMsgListener;
+
 @class Open_im_sdk_callbackOnConnListener;
 
 @class Open_im_sdk_callbackOnConversationListener;
@@ -157,6 +165,14 @@
 - (void)onRecvGroupReadReceipt:(NSString* _Nullable)groupMsgReceiptList;
 - (void)onRecvMessageRevoked:(NSString* _Nullable)msgID;
 - (void)onRecvNewMessage:(NSString* _Nullable)message;
+@end
+
+@interface Open_im_sdk_callbackOnBatchMsgListener : NSObject <goSeqRefInterface, Open_im_sdk_callbackOnBatchMsgListener> {
+}
+@property(strong, readonly) _Nonnull id _ref;
+
+- (nonnull instancetype)initWithRef:(_Nonnull id)ref;
+- (void)onRecvNewMessages:(NSString* _Nullable)messageList;
 @end
 
 @interface Open_im_sdk_callbackOnConnListener : NSObject <goSeqRefInterface, Open_im_sdk_callbackOnConnListener> {
