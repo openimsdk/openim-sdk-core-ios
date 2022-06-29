@@ -194,6 +194,9 @@
 - (nonnull instancetype)initWithRef:(_Nonnull id)ref;
 - (void)onConversationChanged:(NSString* _Nullable)conversationList;
 - (void)onNewConversation:(NSString* _Nullable)conversationList;
+/**
+ * OnSyncServerProgress(progress int)
+ */
 - (void)onSyncServerFailed;
 - (void)onSyncServerFinish;
 - (void)onSyncServerStart;
