@@ -270,6 +270,8 @@ FOUNDATION_EXPORT void Open_im_sdkSendMessageNotOss(id<Open_im_sdk_callbackSendM
 
 FOUNDATION_EXPORT void Open_im_sdkSetAdvancedMsgListener(id<Open_im_sdk_callbackOnAdvancedMsgListener> _Nullable listener);
 
+FOUNDATION_EXPORT void Open_im_sdkSetAppBadge(id<Open_im_sdk_callbackBase> _Nullable callback, int32_t appUnreadCount, NSString* _Nullable operationID);
+
 FOUNDATION_EXPORT void Open_im_sdkSetBatchMsgListener(id<Open_im_sdk_callbackOnBatchMsgListener> _Nullable listener);
 
 FOUNDATION_EXPORT void Open_im_sdkSetConversationDraft(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, NSString* _Nullable draftText);
