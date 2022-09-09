@@ -318,6 +318,8 @@ FOUNDATION_EXPORT void Open_im_sdkSetSelfInfo(id<Open_im_sdk_callbackBase> _Null
  */
 FOUNDATION_EXPORT void Open_im_sdkSetSignalingListener(id<Open_im_sdk_callbackOnSignalingListener> _Nullable callback);
 
+FOUNDATION_EXPORT void Open_im_sdkSetSignalingListenerForService(id<Open_im_sdk_callbackOnSignalingListener> _Nullable callback);
+
 FOUNDATION_EXPORT void Open_im_sdkSetUserListener(id<Open_im_sdk_callbackOnUserListener> _Nullable listener);
 
 FOUNDATION_EXPORT void Open_im_sdkSetWorkMomentsListener(id<Open_im_sdk_callbackOnWorkMomentsListener> _Nullable listener);
