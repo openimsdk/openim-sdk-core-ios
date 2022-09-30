@@ -108,6 +108,8 @@
 - (void)onInviteeRejected:(NSString* _Nullable)inviteeRejectedCallback;
 - (void)onInviteeRejectedByOtherDevice:(NSString* _Nullable)inviteeRejectedCallback;
 - (void)onReceiveNewInvitation:(NSString* _Nullable)receiveNewInvitationCallback;
+- (void)onRoomParticipantConnected:(NSString* _Nullable)onRoomParticipantConnectedCallback;
+- (void)onRoomParticipantDisconnected:(NSString* _Nullable)onRoomParticipantDisconnectedCallback;
 @end
 
 @protocol Open_im_sdk_callbackOnUserListener <NSObject>
@@ -262,6 +264,8 @@
 - (void)onInviteeRejected:(NSString* _Nullable)inviteeRejectedCallback;
 - (void)onInviteeRejectedByOtherDevice:(NSString* _Nullable)inviteeRejectedCallback;
 - (void)onReceiveNewInvitation:(NSString* _Nullable)receiveNewInvitationCallback;
+- (void)onRoomParticipantConnected:(NSString* _Nullable)onRoomParticipantConnectedCallback;
+- (void)onRoomParticipantDisconnected:(NSString* _Nullable)onRoomParticipantDisconnectedCallback;
 @end
 
 @interface Open_im_sdk_callbackOnUserListener : NSObject <goSeqRefInterface, Open_im_sdk_callbackOnUserListener> {
