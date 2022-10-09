@@ -330,6 +330,8 @@ FOUNDATION_EXPORT void Open_im_sdkSignalingCancel(id<Open_im_sdk_callbackBase> _
 
 FOUNDATION_EXPORT void Open_im_sdkSignalingGetRoomByGroupID(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID);
 
+FOUNDATION_EXPORT void Open_im_sdkSignalingGetTokenByRoomID(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID);
+
 FOUNDATION_EXPORT void Open_im_sdkSignalingHungUp(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable signalHungUpReq);
 
 FOUNDATION_EXPORT void Open_im_sdkSignalingInvite(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable signalInviteReq);
