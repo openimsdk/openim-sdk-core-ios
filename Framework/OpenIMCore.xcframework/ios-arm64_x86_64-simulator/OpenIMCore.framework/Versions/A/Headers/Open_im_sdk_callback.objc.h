@@ -110,6 +110,7 @@
 - (void)onReceiveNewInvitation:(NSString* _Nullable)receiveNewInvitationCallback;
 - (void)onRoomParticipantConnected:(NSString* _Nullable)onRoomParticipantConnectedCallback;
 - (void)onRoomParticipantDisconnected:(NSString* _Nullable)onRoomParticipantDisconnectedCallback;
+- (void)onStreamChange:(NSString* _Nullable)OnStreamChangeCallback;
 @end
 
 @protocol Open_im_sdk_callbackOnUserListener <NSObject>
@@ -266,6 +267,7 @@
 - (void)onReceiveNewInvitation:(NSString* _Nullable)receiveNewInvitationCallback;
 - (void)onRoomParticipantConnected:(NSString* _Nullable)onRoomParticipantConnectedCallback;
 - (void)onRoomParticipantDisconnected:(NSString* _Nullable)onRoomParticipantDisconnectedCallback;
+- (void)onStreamChange:(NSString* _Nullable)OnStreamChangeCallback;
 @end
 
 @interface Open_im_sdk_callbackOnUserListener : NSObject <goSeqRefInterface, Open_im_sdk_callbackOnUserListener> {
