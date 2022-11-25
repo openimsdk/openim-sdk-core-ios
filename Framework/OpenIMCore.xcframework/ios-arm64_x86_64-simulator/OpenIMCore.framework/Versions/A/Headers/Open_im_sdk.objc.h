@@ -305,6 +305,8 @@ FOUNDATION_EXPORT void Open_im_sdkSetGroupVerification(id<Open_im_sdk_callbackBa
 
 FOUNDATION_EXPORT void Open_im_sdkSetHeartbeatInterval(long heartbeatInterval);
 
+FOUNDATION_EXPORT void Open_im_sdkSetOneConversationBurnDuration(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, int32_t burnDuration);
+
 FOUNDATION_EXPORT void Open_im_sdkSetOneConversationPrivateChat(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, BOOL isPrivate);
 
 FOUNDATION_EXPORT void Open_im_sdkSetOneConversationRecvMessageOpt(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, long opt);
@@ -349,6 +351,8 @@ FOUNDATION_EXPORT void Open_im_sdkSignalingJoinMeeting(id<Open_im_sdk_callbackBa
 FOUNDATION_EXPORT void Open_im_sdkSignalingOperateStream(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable streamType, NSString* _Nullable roomID, NSString* _Nullable userID, BOOL mute, BOOL muteAll);
 
 FOUNDATION_EXPORT void Open_im_sdkSignalingReject(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable signalRejectReq);
+
+FOUNDATION_EXPORT void Open_im_sdkSignalingSendCustomSignal(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable customInfo, NSString* _Nullable roomID);
 
 /**
  * meeting

@@ -107,6 +107,7 @@
 - (void)onInviteeAcceptedByOtherDevice:(NSString* _Nullable)inviteeAcceptedCallback;
 - (void)onInviteeRejected:(NSString* _Nullable)inviteeRejectedCallback;
 - (void)onInviteeRejectedByOtherDevice:(NSString* _Nullable)inviteeRejectedCallback;
+- (void)onReceiveCustomSignal:(NSString* _Nullable)CustomSignalCallback;
 - (void)onReceiveNewInvitation:(NSString* _Nullable)receiveNewInvitationCallback;
 - (void)onRoomParticipantConnected:(NSString* _Nullable)onRoomParticipantConnectedCallback;
 - (void)onRoomParticipantDisconnected:(NSString* _Nullable)onRoomParticipantDisconnectedCallback;
@@ -264,6 +265,7 @@
 - (void)onInviteeAcceptedByOtherDevice:(NSString* _Nullable)inviteeAcceptedCallback;
 - (void)onInviteeRejected:(NSString* _Nullable)inviteeRejectedCallback;
 - (void)onInviteeRejectedByOtherDevice:(NSString* _Nullable)inviteeRejectedCallback;
+- (void)onReceiveCustomSignal:(NSString* _Nullable)CustomSignalCallback;
 - (void)onReceiveNewInvitation:(NSString* _Nullable)receiveNewInvitationCallback;
 - (void)onRoomParticipantConnected:(NSString* _Nullable)onRoomParticipantConnectedCallback;
 - (void)onRoomParticipantDisconnected:(NSString* _Nullable)onRoomParticipantDisconnectedCallback;
