@@ -12,7 +12,23 @@
 
 #include "Open_im_sdk_callback.objc.h"
 
+@protocol Open_im_sdkCaller;
+@class Open_im_sdkCaller;
+
+@protocol Open_im_sdkCaller <NSObject>
+// skipped method Caller.BaseCaller with unsupported parameter or return types
+
+// skipped method Caller.SendMessageCaller with unsupported parameter or return types
+
+@end
+
 @interface Open_im_sdk : NSObject
++ (NSError* _Nullable) errNotSetCallback;
++ (void) setErrNotSetCallback:(NSError* _Nullable)v;
+
++ (NSError* _Nullable) errNotSetFunc;
++ (void) setErrNotSetFunc:(NSError* _Nullable)v;
+
 // skipped variable UserRouterMap with unsupported type: map[string]*open_im_sdk/internal/login.LoginMgr
 
 // skipped variable UserSDKRwLock with unsupported type: sync.RWMutex
@@ -26,6 +42,9 @@ FOUNDATION_EXPORT void Open_im_sdkAcceptGroupApplication(id<Open_im_sdk_callback
 FOUNDATION_EXPORT void Open_im_sdkAddBlack(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable blackUserID);
 
 FOUNDATION_EXPORT void Open_im_sdkAddFriend(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDReqMsg);
+
+// skipped function BaseCaller with unsupported parameter or return types
+
 
 FOUNDATION_EXPORT void Open_im_sdkChangeGroupMemberMute(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID, NSString* _Nullable userID, long mutedSeconds);
 
@@ -230,6 +249,8 @@ FOUNDATION_EXPORT void Open_im_sdkMarkGroupMessageHasRead(id<Open_im_sdk_callbac
 
 FOUNDATION_EXPORT void Open_im_sdkMarkMessageAsReadByConID(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, NSString* _Nullable msgIDList);
 
+FOUNDATION_EXPORT void Open_im_sdkModifyGroupMessageReaction(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, int32_t counter, long reactionType, long operationType, NSString* _Nullable groupID, NSString* _Nullable msgID);
+
 FOUNDATION_EXPORT void Open_im_sdkNewRevokeMessage(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable message);
 
 FOUNDATION_EXPORT void Open_im_sdkPinConversation(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, BOOL isPinned);
@@ -266,9 +287,14 @@ FOUNDATION_EXPORT void Open_im_sdkSearchOrganization(id<Open_im_sdk_callbackBase
 
 FOUNDATION_EXPORT void Open_im_sdkSendMessage(id<Open_im_sdk_callbackSendMsgCallBack> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable message, NSString* _Nullable recvID, NSString* _Nullable groupID, NSString* _Nullable offlinePushInfo);
 
+// skipped function SendMessageByBuffer with unsupported parameter or return types
+
+
 FOUNDATION_EXPORT void Open_im_sdkSendMessageNotOss(id<Open_im_sdk_callbackSendMsgCallBack> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable message, NSString* _Nullable recvID, NSString* _Nullable groupID, NSString* _Nullable offlinePushInfo);
 
 FOUNDATION_EXPORT void Open_im_sdkSetAdvancedMsgListener(id<Open_im_sdk_callbackOnAdvancedMsgListener> _Nullable listener);
+
+FOUNDATION_EXPORT void Open_im_sdkSetAppBackgroundStatus(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, BOOL isBackground);
 
 FOUNDATION_EXPORT void Open_im_sdkSetAppBadge(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, int32_t appUnreadCount);
 
@@ -370,5 +396,18 @@ FOUNDATION_EXPORT void Open_im_sdkUploadFile(id<Open_im_sdk_callbackSendMsgCallB
 FOUNDATION_EXPORT NSString* _Nonnull Open_im_sdkUploadImage(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable filePath, NSString* _Nullable token, NSString* _Nullable obj);
 
 FOUNDATION_EXPORT void Open_im_sdkWakeUp(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
+
+@class Open_im_sdkCaller;
+
+@interface Open_im_sdkCaller : NSObject <goSeqRefInterface, Open_im_sdkCaller> {
+}
+@property(strong, readonly) _Nonnull id _ref;
+
+- (nonnull instancetype)initWithRef:(_Nonnull id)ref;
+// skipped method Caller.BaseCaller with unsupported parameter or return types
+
+// skipped method Caller.SendMessageCaller with unsupported parameter or return types
+
+@end
 
 #endif
