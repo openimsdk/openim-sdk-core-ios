@@ -21,6 +21,8 @@
 @class Open_im_sdk_callbackOnConnListener;
 @protocol Open_im_sdk_callbackOnConversationListener;
 @class Open_im_sdk_callbackOnConversationListener;
+@protocol Open_im_sdk_callbackOnCustomBusinessListener;
+@class Open_im_sdk_callbackOnCustomBusinessListener;
 @protocol Open_im_sdk_callbackOnFriendshipListener;
 @class Open_im_sdk_callbackOnFriendshipListener;
 @protocol Open_im_sdk_callbackOnGroupListener;
@@ -68,6 +70,10 @@
 - (void)onSyncServerFinish;
 - (void)onSyncServerStart;
 - (void)onTotalUnreadMessageCountChanged:(int32_t)totalUnreadCount;
+@end
+
+@protocol Open_im_sdk_callbackOnCustomBusinessListener <NSObject>
+- (void)onRecvCustomBusinessMessage:(NSString* _Nullable)businessMessage;
 @end
 
 @protocol Open_im_sdk_callbackOnFriendshipListener <NSObject>
@@ -137,6 +143,8 @@
 @class Open_im_sdk_callbackOnConnListener;
 
 @class Open_im_sdk_callbackOnConversationListener;
+
+@class Open_im_sdk_callbackOnCustomBusinessListener;
 
 @class Open_im_sdk_callbackOnFriendshipListener;
 
@@ -210,6 +218,14 @@
 - (void)onSyncServerFinish;
 - (void)onSyncServerStart;
 - (void)onTotalUnreadMessageCountChanged:(int32_t)totalUnreadCount;
+@end
+
+@interface Open_im_sdk_callbackOnCustomBusinessListener : NSObject <goSeqRefInterface, Open_im_sdk_callbackOnCustomBusinessListener> {
+}
+@property(strong, readonly) _Nonnull id _ref;
+
+- (nonnull instancetype)initWithRef:(_Nonnull id)ref;
+- (void)onRecvCustomBusinessMessage:(NSString* _Nullable)businessMessage;
 @end
 
 @interface Open_im_sdk_callbackOnFriendshipListener : NSObject <goSeqRefInterface, Open_im_sdk_callbackOnFriendshipListener> {
