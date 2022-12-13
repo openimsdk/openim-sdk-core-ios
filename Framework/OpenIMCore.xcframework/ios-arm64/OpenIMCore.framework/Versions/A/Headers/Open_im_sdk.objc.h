@@ -56,8 +56,6 @@ FOUNDATION_EXPORT void Open_im_sdkAddBlack(id<Open_im_sdk_callbackBase> _Nullabl
 
 FOUNDATION_EXPORT void Open_im_sdkAddFriend(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDReqMsg);
 
-FOUNDATION_EXPORT void Open_im_sdkAddMessageReactionExtensions(void);
-
 // skipped function BaseCaller with unsupported parameter or return types
 
 
@@ -146,8 +144,6 @@ FOUNDATION_EXPORT void Open_im_sdkDeleteMessageFromLocalAndSvr(id<Open_im_sdk_ca
 
 FOUNDATION_EXPORT void Open_im_sdkDeleteMessageFromLocalStorage(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable message);
 
-FOUNDATION_EXPORT void Open_im_sdkDeleteMessageReactionExtensions(void);
-
 FOUNDATION_EXPORT void Open_im_sdkDismissGroup(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID);
 
 FOUNDATION_EXPORT void Open_im_sdkFindMessageList(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable findMessageOptions);
@@ -199,7 +195,7 @@ FOUNDATION_EXPORT int32_t Open_im_sdkGetLoginStatus(void);
 
 FOUNDATION_EXPORT NSString* _Nonnull Open_im_sdkGetLoginUser(void);
 
-FOUNDATION_EXPORT void Open_im_sdkGetMessageListReactionExtensions(void);
+FOUNDATION_EXPORT void Open_im_sdkGetMessageListReactionExtensions(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable messageList);
 
 FOUNDATION_EXPORT void Open_im_sdkGetMultipleConversation(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationIDList);
 
@@ -267,8 +263,6 @@ FOUNDATION_EXPORT void Open_im_sdkMarkGroupMessageAsRead(id<Open_im_sdk_callback
 FOUNDATION_EXPORT void Open_im_sdkMarkGroupMessageHasRead(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID);
 
 FOUNDATION_EXPORT void Open_im_sdkMarkMessageAsReadByConID(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, NSString* _Nullable msgIDList);
-
-FOUNDATION_EXPORT void Open_im_sdkModifyGroupMessageReaction(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, int32_t counter, long reactionType, long operationType, NSString* _Nullable groupID, NSString* _Nullable msgID);
 
 FOUNDATION_EXPORT void Open_im_sdkNewRevokeMessage(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable message);
 
@@ -357,7 +351,7 @@ FOUNDATION_EXPORT void Open_im_sdkSetHeartbeatInterval(long heartbeatInterval);
 /**
  * 修改
  */
-FOUNDATION_EXPORT void Open_im_sdkSetMessageReactionExtensions(void);
+FOUNDATION_EXPORT void Open_im_sdkSetMessageReactionExtensions(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable message, NSString* _Nullable reactionExtensionList);
 
 FOUNDATION_EXPORT void Open_im_sdkSetOneConversationBurnDuration(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, int32_t burnDuration);
 
