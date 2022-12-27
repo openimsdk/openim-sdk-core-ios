@@ -27,6 +27,8 @@
 @class Open_im_sdk_callbackOnFriendshipListener;
 @protocol Open_im_sdk_callbackOnGroupListener;
 @class Open_im_sdk_callbackOnGroupListener;
+@protocol Open_im_sdk_callbackOnMessageKvInfoListener;
+@class Open_im_sdk_callbackOnMessageKvInfoListener;
 @protocol Open_im_sdk_callbackOnOrganizationListener;
 @class Open_im_sdk_callbackOnOrganizationListener;
 @protocol Open_im_sdk_callbackOnSignalingListener;
@@ -47,6 +49,8 @@
 - (void)onNewRecvMessageRevoked:(NSString* _Nullable)messageRevoked;
 - (void)onRecvC2CReadReceipt:(NSString* _Nullable)msgReceiptList;
 - (void)onRecvGroupReadReceipt:(NSString* _Nullable)groupMsgReceiptList;
+- (void)onRecvMessageExtensionsChanged:(NSString* _Nullable)msgID reactionExtensionList:(NSString* _Nullable)reactionExtensionList;
+- (void)onRecvMessageExtensionsDeleted:(NSString* _Nullable)msgID reactionExtensionKeyList:(NSString* _Nullable)reactionExtensionKeyList;
 - (void)onRecvMessageRevoked:(NSString* _Nullable)msgID;
 - (void)onRecvNewMessage:(NSString* _Nullable)message;
 @end
@@ -101,6 +105,10 @@
 - (void)onJoinedGroupDeleted:(NSString* _Nullable)groupInfo;
 @end
 
+@protocol Open_im_sdk_callbackOnMessageKvInfoListener <NSObject>
+- (void)onMessageKvInfoChanged:(NSString* _Nullable)messageChangedList;
+@end
+
 @protocol Open_im_sdk_callbackOnOrganizationListener <NSObject>
 - (void)onOrganizationUpdated;
 @end
@@ -150,6 +158,8 @@
 
 @class Open_im_sdk_callbackOnGroupListener;
 
+@class Open_im_sdk_callbackOnMessageKvInfoListener;
+
 @class Open_im_sdk_callbackOnOrganizationListener;
 
 @class Open_im_sdk_callbackOnSignalingListener;
@@ -177,6 +187,8 @@
 - (void)onNewRecvMessageRevoked:(NSString* _Nullable)messageRevoked;
 - (void)onRecvC2CReadReceipt:(NSString* _Nullable)msgReceiptList;
 - (void)onRecvGroupReadReceipt:(NSString* _Nullable)groupMsgReceiptList;
+- (void)onRecvMessageExtensionsChanged:(NSString* _Nullable)msgID reactionExtensionList:(NSString* _Nullable)reactionExtensionList;
+- (void)onRecvMessageExtensionsDeleted:(NSString* _Nullable)msgID reactionExtensionKeyList:(NSString* _Nullable)reactionExtensionKeyList;
 /**
  * deprecated
  */
@@ -259,6 +271,14 @@
 - (void)onGroupMemberInfoChanged:(NSString* _Nullable)groupMemberInfo;
 - (void)onJoinedGroupAdded:(NSString* _Nullable)groupInfo;
 - (void)onJoinedGroupDeleted:(NSString* _Nullable)groupInfo;
+@end
+
+@interface Open_im_sdk_callbackOnMessageKvInfoListener : NSObject <goSeqRefInterface, Open_im_sdk_callbackOnMessageKvInfoListener> {
+}
+@property(strong, readonly) _Nonnull id _ref;
+
+- (nonnull instancetype)initWithRef:(_Nonnull id)ref;
+- (void)onMessageKvInfoChanged:(NSString* _Nullable)messageChangedList;
 @end
 
 @interface Open_im_sdk_callbackOnOrganizationListener : NSObject <goSeqRefInterface, Open_im_sdk_callbackOnOrganizationListener> {
