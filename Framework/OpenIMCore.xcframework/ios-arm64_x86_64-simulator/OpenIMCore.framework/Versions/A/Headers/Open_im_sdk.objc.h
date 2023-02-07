@@ -56,6 +56,8 @@ FOUNDATION_EXPORT void Open_im_sdkAddBlack(id<Open_im_sdk_callbackBase> _Nullabl
 
 FOUNDATION_EXPORT void Open_im_sdkAddFriend(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDReqMsg);
 
+FOUNDATION_EXPORT void Open_im_sdkAddMessageReactionExtensions(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable message, NSString* _Nullable reactionExtensionList);
+
 // skipped function BaseCaller with unsupported parameter or return types
 
 
@@ -200,6 +202,8 @@ FOUNDATION_EXPORT int32_t Open_im_sdkGetLoginStatus(void);
 FOUNDATION_EXPORT NSString* _Nonnull Open_im_sdkGetLoginUser(void);
 
 FOUNDATION_EXPORT void Open_im_sdkGetMessageListReactionExtensions(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable messageList);
+
+FOUNDATION_EXPORT void Open_im_sdkGetMessageListSomeReactionExtensions(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable messageList, NSString* _Nullable reactionExtensionKeyList);
 
 FOUNDATION_EXPORT void Open_im_sdkGetMultipleConversation(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationIDList);
 

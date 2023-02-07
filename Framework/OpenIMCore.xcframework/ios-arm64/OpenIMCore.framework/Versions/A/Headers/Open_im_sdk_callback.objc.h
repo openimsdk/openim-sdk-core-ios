@@ -49,6 +49,7 @@
 - (void)onNewRecvMessageRevoked:(NSString* _Nullable)messageRevoked;
 - (void)onRecvC2CReadReceipt:(NSString* _Nullable)msgReceiptList;
 - (void)onRecvGroupReadReceipt:(NSString* _Nullable)groupMsgReceiptList;
+- (void)onRecvMessageExtensionsAdded:(NSString* _Nullable)msgID reactionExtensionList:(NSString* _Nullable)reactionExtensionList;
 - (void)onRecvMessageExtensionsChanged:(NSString* _Nullable)msgID reactionExtensionList:(NSString* _Nullable)reactionExtensionList;
 - (void)onRecvMessageExtensionsDeleted:(NSString* _Nullable)msgID reactionExtensionKeyList:(NSString* _Nullable)reactionExtensionKeyList;
 - (void)onRecvMessageRevoked:(NSString* _Nullable)msgID;
@@ -187,6 +188,7 @@
 - (void)onNewRecvMessageRevoked:(NSString* _Nullable)messageRevoked;
 - (void)onRecvC2CReadReceipt:(NSString* _Nullable)msgReceiptList;
 - (void)onRecvGroupReadReceipt:(NSString* _Nullable)groupMsgReceiptList;
+- (void)onRecvMessageExtensionsAdded:(NSString* _Nullable)msgID reactionExtensionList:(NSString* _Nullable)reactionExtensionList;
 - (void)onRecvMessageExtensionsChanged:(NSString* _Nullable)msgID reactionExtensionList:(NSString* _Nullable)reactionExtensionList;
 - (void)onRecvMessageExtensionsDeleted:(NSString* _Nullable)msgID reactionExtensionKeyList:(NSString* _Nullable)reactionExtensionKeyList;
 /**
