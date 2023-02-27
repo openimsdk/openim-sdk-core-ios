@@ -358,6 +358,8 @@ FOUNDATION_EXPORT void Open_im_sdkSetGroupVerification(id<Open_im_sdk_callbackBa
 
 FOUNDATION_EXPORT void Open_im_sdkSetHeartbeatInterval(long heartbeatInterval);
 
+FOUNDATION_EXPORT void Open_im_sdkSetListenerForService(id<Open_im_sdk_callbackOnListenerForService> _Nullable callback);
+
 FOUNDATION_EXPORT void Open_im_sdkSetMessageKvInfoListener(id<Open_im_sdk_callbackOnMessageKvInfoListener> _Nullable listener);
 
 /**

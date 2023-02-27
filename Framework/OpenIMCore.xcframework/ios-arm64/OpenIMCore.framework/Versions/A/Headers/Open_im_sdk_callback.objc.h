@@ -27,6 +27,8 @@
 @class Open_im_sdk_callbackOnFriendshipListener;
 @protocol Open_im_sdk_callbackOnGroupListener;
 @class Open_im_sdk_callbackOnGroupListener;
+@protocol Open_im_sdk_callbackOnListenerForService;
+@class Open_im_sdk_callbackOnListenerForService;
 @protocol Open_im_sdk_callbackOnMessageKvInfoListener;
 @class Open_im_sdk_callbackOnMessageKvInfoListener;
 @protocol Open_im_sdk_callbackOnOrganizationListener;
@@ -106,6 +108,14 @@
 - (void)onJoinedGroupDeleted:(NSString* _Nullable)groupInfo;
 @end
 
+@protocol Open_im_sdk_callbackOnListenerForService <NSObject>
+- (void)onFriendApplicationAccepted:(NSString* _Nullable)groupApplication;
+- (void)onFriendApplicationAdded:(NSString* _Nullable)friendApplication;
+- (void)onGroupApplicationAccepted:(NSString* _Nullable)groupApplication;
+- (void)onGroupApplicationAdded:(NSString* _Nullable)groupApplication;
+- (void)onRecvNewMessage:(NSString* _Nullable)message;
+@end
+
 @protocol Open_im_sdk_callbackOnMessageKvInfoListener <NSObject>
 - (void)onMessageKvInfoChanged:(NSString* _Nullable)messageChangedList;
 @end
@@ -158,6 +168,8 @@
 @class Open_im_sdk_callbackOnFriendshipListener;
 
 @class Open_im_sdk_callbackOnGroupListener;
+
+@class Open_im_sdk_callbackOnListenerForService;
 
 @class Open_im_sdk_callbackOnMessageKvInfoListener;
 
@@ -273,6 +285,33 @@
 - (void)onGroupMemberInfoChanged:(NSString* _Nullable)groupMemberInfo;
 - (void)onJoinedGroupAdded:(NSString* _Nullable)groupInfo;
 - (void)onJoinedGroupDeleted:(NSString* _Nullable)groupInfo;
+@end
+
+@interface Open_im_sdk_callbackOnListenerForService : NSObject <goSeqRefInterface, Open_im_sdk_callbackOnListenerForService> {
+}
+@property(strong, readonly) _Nonnull id _ref;
+
+- (nonnull instancetype)initWithRef:(_Nonnull id)ref;
+/**
+ * 好友申请被同意
+ */
+- (void)onFriendApplicationAccepted:(NSString* _Nullable)groupApplication;
+/**
+ * 有人申请添加你为好友
+ */
+- (void)onFriendApplicationAdded:(NSString* _Nullable)friendApplication;
+/**
+ * 进群申请被同意
+ */
+- (void)onGroupApplicationAccepted:(NSString* _Nullable)groupApplication;
+/**
+ * 有人申请进群
+ */
+- (void)onGroupApplicationAdded:(NSString* _Nullable)groupApplication;
+/**
+ * 收到新消息
+ */
+- (void)onRecvNewMessage:(NSString* _Nullable)message;
 @end
 
 @interface Open_im_sdk_callbackOnMessageKvInfoListener : NSObject <goSeqRefInterface, Open_im_sdk_callbackOnMessageKvInfoListener> {
