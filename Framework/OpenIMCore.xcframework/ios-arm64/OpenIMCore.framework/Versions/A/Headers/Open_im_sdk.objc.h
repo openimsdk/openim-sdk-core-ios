@@ -274,6 +274,8 @@ FOUNDATION_EXPORT void Open_im_sdkMarkGroupMessageHasRead(id<Open_im_sdk_callbac
 
 FOUNDATION_EXPORT void Open_im_sdkMarkMessageAsReadByConID(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, NSString* _Nullable msgIDList);
 
+FOUNDATION_EXPORT void Open_im_sdkNetworkChanged(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
+
 FOUNDATION_EXPORT void Open_im_sdkNewRevokeMessage(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable message);
 
 FOUNDATION_EXPORT void Open_im_sdkPinConversation(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, BOOL isPinned);
