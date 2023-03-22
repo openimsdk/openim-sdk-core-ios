@@ -154,6 +154,8 @@ FOUNDATION_EXPORT void Open_im_sdkFindMessageList(id<Open_im_sdk_callbackBase> _
 
 FOUNDATION_EXPORT void Open_im_sdkGetAdvancedHistoryMessageList(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable getMessageOptions);
 
+FOUNDATION_EXPORT void Open_im_sdkGetAdvancedHistoryMessageListReverse(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable getMessageOptions);
+
 FOUNDATION_EXPORT void Open_im_sdkGetAllConversationList(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
 
 FOUNDATION_EXPORT void Open_im_sdkGetAllTypeKeyInfo(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable message, NSString* _Nullable operationID);
@@ -243,6 +245,8 @@ FOUNDATION_EXPORT void Open_im_sdkGetWorkMomentsNotification(id<Open_im_sdk_call
  * workMomentsInterface
  */
 FOUNDATION_EXPORT void Open_im_sdkGetWorkMomentsUnReadCount(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
+
+FOUNDATION_EXPORT void Open_im_sdkHideConversation(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID);
 
 // skipped function InitOnce with unsupported parameter or return types
 
