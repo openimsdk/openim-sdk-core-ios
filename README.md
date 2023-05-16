@@ -1,3 +1,3 @@
-# Open-IM-SDK-iOS-Core
+# openim-sdk-core-ios
 
 pod 'OpenIMSDKCore'
