@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'OpenIMSDKCore'
-  s.version          = '2.3.6'
+  s.version          = '2.3.7'
   s.summary          = 'Open-IM-SDK-Core'
 
 # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/OpenIMSDK/Open-IM-SDK-iOS'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'OpenIMSDKCore' => 'https://github.com/std-s/Open-IM-SDK-Core' }
-  s.source           = { :git => 'https://github.com/std-s/Open-IM-SDK-Core.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/OpenIMSDK/openim-sdk-core-ios.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '11.0'    
     
