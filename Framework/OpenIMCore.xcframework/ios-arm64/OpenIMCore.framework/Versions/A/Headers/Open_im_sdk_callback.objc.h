@@ -56,7 +56,7 @@
 - (void)onRecvMessageExtensionsChanged:(NSString* _Nullable)msgID reactionExtensionList:(NSString* _Nullable)reactionExtensionList;
 - (void)onRecvMessageExtensionsDeleted:(NSString* _Nullable)msgID reactionExtensionKeyList:(NSString* _Nullable)reactionExtensionKeyList;
 - (void)onRecvNewMessage:(NSString* _Nullable)message;
-- (void)onRecvOfflineNewMessages:(NSString* _Nullable)messageList;
+- (void)onRecvOfflineNewMessage:(NSString* _Nullable)message;
 @end
 
 @protocol Open_im_sdk_callbackOnBatchMsgListener <NSObject>
@@ -230,7 +230,7 @@ FOUNDATION_EXPORT id<Open_im_sdk_callbackOnFriendshipListenerSdk> _Nullable Open
 - (void)onRecvMessageExtensionsChanged:(NSString* _Nullable)msgID reactionExtensionList:(NSString* _Nullable)reactionExtensionList;
 - (void)onRecvMessageExtensionsDeleted:(NSString* _Nullable)msgID reactionExtensionKeyList:(NSString* _Nullable)reactionExtensionKeyList;
 - (void)onRecvNewMessage:(NSString* _Nullable)message;
-- (void)onRecvOfflineNewMessages:(NSString* _Nullable)messageList;
+- (void)onRecvOfflineNewMessage:(NSString* _Nullable)message;
 @end
 
 @interface Open_im_sdk_callbackOnBatchMsgListener : NSObject <goSeqRefInterface, Open_im_sdk_callbackOnBatchMsgListener> {
