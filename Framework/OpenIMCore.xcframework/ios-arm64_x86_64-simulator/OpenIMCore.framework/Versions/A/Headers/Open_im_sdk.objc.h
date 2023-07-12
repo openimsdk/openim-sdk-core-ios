@@ -235,8 +235,6 @@ FOUNDATION_EXPORT void Open_im_sdkNetworkStatusChanged(id<Open_im_sdk_callbackBa
 
 FOUNDATION_EXPORT void Open_im_sdkPinConversation(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, BOOL isPinned);
 
-FOUNDATION_EXPORT void Open_im_sdkPutFile(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable req, id<Open_im_sdk_callbackPutFileCallback> _Nullable progress);
-
 FOUNDATION_EXPORT void Open_im_sdkQuitGroup(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID);
 
 FOUNDATION_EXPORT void Open_im_sdkRefuseFriendApplication(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDHandleMsg);
@@ -279,7 +277,11 @@ FOUNDATION_EXPORT void Open_im_sdkSetConversationBurnDuration(id<Open_im_sdk_cal
 
 FOUNDATION_EXPORT void Open_im_sdkSetConversationDraft(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, NSString* _Nullable draftText);
 
+FOUNDATION_EXPORT void Open_im_sdkSetConversationIsMsgDestruct(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, BOOL isMsgDestruct);
+
 FOUNDATION_EXPORT void Open_im_sdkSetConversationListener(id<Open_im_sdk_callbackOnConversationListener> _Nullable listener);
+
+FOUNDATION_EXPORT void Open_im_sdkSetConversationMsgDestructTime(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, int64_t msgDestructTime);
 
 FOUNDATION_EXPORT void Open_im_sdkSetConversationPrivateChat(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, BOOL isPrivate);
 
@@ -332,6 +334,8 @@ FOUNDATION_EXPORT void Open_im_sdkUpdateFcmToken(id<Open_im_sdk_callbackBase> _N
  * UpdateMsgSenderInfo updates the message sender's nickname and face URL.
  */
 FOUNDATION_EXPORT void Open_im_sdkUpdateMsgSenderInfo(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable nickname, NSString* _Nullable faceURL);
+
+FOUNDATION_EXPORT void Open_im_sdkUploadFile(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable req, id<Open_im_sdk_callbackUploadFileCallback> _Nullable progress);
 
 @class Open_im_sdkCaller;
 

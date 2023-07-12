@@ -37,10 +37,10 @@
 @class Open_im_sdk_callbackOnSignalingListener;
 @protocol Open_im_sdk_callbackOnUserListener;
 @class Open_im_sdk_callbackOnUserListener;
-@protocol Open_im_sdk_callbackPutFileCallback;
-@class Open_im_sdk_callbackPutFileCallback;
 @protocol Open_im_sdk_callbackSendMsgCallBack;
 @class Open_im_sdk_callbackSendMsgCallBack;
+@protocol Open_im_sdk_callbackUploadFileCallback;
+@class Open_im_sdk_callbackUploadFileCallback;
 
 @protocol Open_im_sdk_callbackBase <NSObject>
 - (void)onError:(int32_t)errCode errMsg:(NSString* _Nullable)errMsg;
@@ -161,19 +161,21 @@
 - (void)onSelfInfoUpdated:(NSString* _Nullable)userInfo;
 @end
 
-@protocol Open_im_sdk_callbackPutFileCallback <NSObject>
-- (void)hashComplete:(NSString* _Nullable)hash total:(int64_t)total;
-- (void)hashProgress:(int64_t)current total:(int64_t)total;
-- (void)open:(int64_t)size;
-- (void)putComplete:(int64_t)total putType:(long)putType;
-- (void)putProgress:(int64_t)save current:(int64_t)current total:(int64_t)total;
-- (void)putStart:(int64_t)current total:(int64_t)total;
-@end
-
 @protocol Open_im_sdk_callbackSendMsgCallBack <NSObject>
 - (void)onError:(int32_t)errCode errMsg:(NSString* _Nullable)errMsg;
 - (void)onProgress:(long)progress;
 - (void)onSuccess:(NSString* _Nullable)data;
+@end
+
+@protocol Open_im_sdk_callbackUploadFileCallback <NSObject>
+- (void)complete:(int64_t)size url:(NSString* _Nullable)url typ:(int32_t)typ;
+- (void)hashPartComplete:(NSString* _Nullable)partsHash fileHash:(NSString* _Nullable)fileHash;
+- (void)hashPartProgress:(int32_t)index size:(int64_t)size partHash:(NSString* _Nullable)partHash;
+- (void)open:(int64_t)size;
+- (void)partSize:(int64_t)partSize num:(int32_t)num;
+- (void)uploadComplete:(int64_t)fileSize streamSize:(int64_t)streamSize storageSize:(int64_t)storageSize;
+- (void)uploadID:(NSString* _Nullable)uploadID;
+- (void)uploadPartComplete:(int32_t)index partSize:(int64_t)partSize partHash:(NSString* _Nullable)partHash;
 @end
 
 FOUNDATION_EXPORT id<Open_im_sdk_callbackOnFriendshipListenerSdk> _Nullable Open_im_sdk_callbackNewOnFriendshipListenerSdk(id<Open_im_sdk_callbackOnFriendshipListener> _Nullable listener);
@@ -204,9 +206,9 @@ FOUNDATION_EXPORT id<Open_im_sdk_callbackOnFriendshipListenerSdk> _Nullable Open
 
 @class Open_im_sdk_callbackOnUserListener;
 
-@class Open_im_sdk_callbackPutFileCallback;
-
 @class Open_im_sdk_callbackSendMsgCallBack;
+
+@class Open_im_sdk_callbackUploadFileCallback;
 
 @interface Open_im_sdk_callbackBase : NSObject <goSeqRefInterface, Open_im_sdk_callbackBase> {
 }
@@ -397,19 +399,6 @@ FOUNDATION_EXPORT id<Open_im_sdk_callbackOnFriendshipListenerSdk> _Nullable Open
 - (void)onSelfInfoUpdated:(NSString* _Nullable)userInfo;
 @end
 
-@interface Open_im_sdk_callbackPutFileCallback : NSObject <goSeqRefInterface, Open_im_sdk_callbackPutFileCallback> {
-}
-@property(strong, readonly) _Nonnull id _ref;
-
-- (nonnull instancetype)initWithRef:(_Nonnull id)ref;
-- (void)hashComplete:(NSString* _Nullable)hash total:(int64_t)total;
-- (void)hashProgress:(int64_t)current total:(int64_t)total;
-- (void)open:(int64_t)size;
-- (void)putComplete:(int64_t)total putType:(long)putType;
-- (void)putProgress:(int64_t)save current:(int64_t)current total:(int64_t)total;
-- (void)putStart:(int64_t)current total:(int64_t)total;
-@end
-
 @interface Open_im_sdk_callbackSendMsgCallBack : NSObject <goSeqRefInterface, Open_im_sdk_callbackSendMsgCallBack> {
 }
 @property(strong, readonly) _Nonnull id _ref;
@@ -418,6 +407,21 @@ FOUNDATION_EXPORT id<Open_im_sdk_callbackOnFriendshipListenerSdk> _Nullable Open
 - (void)onError:(int32_t)errCode errMsg:(NSString* _Nullable)errMsg;
 - (void)onProgress:(long)progress;
 - (void)onSuccess:(NSString* _Nullable)data;
+@end
+
+@interface Open_im_sdk_callbackUploadFileCallback : NSObject <goSeqRefInterface, Open_im_sdk_callbackUploadFileCallback> {
+}
+@property(strong, readonly) _Nonnull id _ref;
+
+- (nonnull instancetype)initWithRef:(_Nonnull id)ref;
+- (void)complete:(int64_t)size url:(NSString* _Nullable)url typ:(int32_t)typ;
+- (void)hashPartComplete:(NSString* _Nullable)partsHash fileHash:(NSString* _Nullable)fileHash;
+- (void)hashPartProgress:(int32_t)index size:(int64_t)size partHash:(NSString* _Nullable)partHash;
+- (void)open:(int64_t)size;
+- (void)partSize:(int64_t)partSize num:(int32_t)num;
+- (void)uploadComplete:(int64_t)fileSize streamSize:(int64_t)streamSize storageSize:(int64_t)storageSize;
+- (void)uploadID:(NSString* _Nullable)uploadID;
+- (void)uploadPartComplete:(int32_t)index partSize:(int64_t)partSize partHash:(NSString* _Nullable)partHash;
 @end
 
 #endif
