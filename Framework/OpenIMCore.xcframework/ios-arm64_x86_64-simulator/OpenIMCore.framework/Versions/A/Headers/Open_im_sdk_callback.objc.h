@@ -152,9 +152,11 @@
 - (void)onInviteeAcceptedByOtherDevice:(NSString* _Nullable)inviteeAcceptedCallback;
 - (void)onInviteeRejected:(NSString* _Nullable)inviteeRejectedCallback;
 - (void)onInviteeRejectedByOtherDevice:(NSString* _Nullable)inviteeRejectedCallback;
+- (void)onReceiveCustomSignal:(NSString* _Nullable)CustomSignalCallback;
 - (void)onReceiveNewInvitation:(NSString* _Nullable)receiveNewInvitationCallback;
 - (void)onRoomParticipantConnected:(NSString* _Nullable)onRoomParticipantConnectedCallback;
 - (void)onRoomParticipantDisconnected:(NSString* _Nullable)onRoomParticipantDisconnectedCallback;
+- (void)onStreamChange:(NSString* _Nullable)OnStreamChangeCallback;
 @end
 
 @protocol Open_im_sdk_callbackOnUserListener <NSObject>
@@ -386,9 +388,11 @@ FOUNDATION_EXPORT id<Open_im_sdk_callbackOnFriendshipListenerSdk> _Nullable Open
 - (void)onInviteeAcceptedByOtherDevice:(NSString* _Nullable)inviteeAcceptedCallback;
 - (void)onInviteeRejected:(NSString* _Nullable)inviteeRejectedCallback;
 - (void)onInviteeRejectedByOtherDevice:(NSString* _Nullable)inviteeRejectedCallback;
+- (void)onReceiveCustomSignal:(NSString* _Nullable)CustomSignalCallback;
 - (void)onReceiveNewInvitation:(NSString* _Nullable)receiveNewInvitationCallback;
 - (void)onRoomParticipantConnected:(NSString* _Nullable)onRoomParticipantConnectedCallback;
 - (void)onRoomParticipantDisconnected:(NSString* _Nullable)onRoomParticipantDisconnectedCallback;
+- (void)onStreamChange:(NSString* _Nullable)OnStreamChangeCallback;
 @end
 
 @interface Open_im_sdk_callbackOnUserListener : NSObject <goSeqRefInterface, Open_im_sdk_callbackOnUserListener> {
