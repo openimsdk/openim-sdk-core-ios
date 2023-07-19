@@ -168,14 +168,14 @@
 @end
 
 @protocol Open_im_sdk_callbackUploadFileCallback <NSObject>
-- (void)complete:(int64_t)size url:(NSString* _Nullable)url typ:(int32_t)typ;
+- (void)complete:(int64_t)size url:(NSString* _Nullable)url typ:(long)typ;
 - (void)hashPartComplete:(NSString* _Nullable)partsHash fileHash:(NSString* _Nullable)fileHash;
-- (void)hashPartProgress:(int32_t)index size:(int64_t)size partHash:(NSString* _Nullable)partHash;
+- (void)hashPartProgress:(long)index size:(int64_t)size partHash:(NSString* _Nullable)partHash;
 - (void)open:(int64_t)size;
-- (void)partSize:(int64_t)partSize num:(int32_t)num;
+- (void)partSize:(int64_t)partSize num:(long)num;
 - (void)uploadComplete:(int64_t)fileSize streamSize:(int64_t)streamSize storageSize:(int64_t)storageSize;
 - (void)uploadID:(NSString* _Nullable)uploadID;
-- (void)uploadPartComplete:(int32_t)index partSize:(int64_t)partSize partHash:(NSString* _Nullable)partHash;
+- (void)uploadPartComplete:(long)index partSize:(int64_t)partSize partHash:(NSString* _Nullable)partHash;
 @end
 
 FOUNDATION_EXPORT id<Open_im_sdk_callbackOnFriendshipListenerSdk> _Nullable Open_im_sdk_callbackNewOnFriendshipListenerSdk(id<Open_im_sdk_callbackOnFriendshipListener> _Nullable listener);
@@ -414,14 +414,14 @@ FOUNDATION_EXPORT id<Open_im_sdk_callbackOnFriendshipListenerSdk> _Nullable Open
 @property(strong, readonly) _Nonnull id _ref;
 
 - (nonnull instancetype)initWithRef:(_Nonnull id)ref;
-- (void)complete:(int64_t)size url:(NSString* _Nullable)url typ:(int32_t)typ;
+- (void)complete:(int64_t)size url:(NSString* _Nullable)url typ:(long)typ;
 - (void)hashPartComplete:(NSString* _Nullable)partsHash fileHash:(NSString* _Nullable)fileHash;
-- (void)hashPartProgress:(int32_t)index size:(int64_t)size partHash:(NSString* _Nullable)partHash;
+- (void)hashPartProgress:(long)index size:(int64_t)size partHash:(NSString* _Nullable)partHash;
 - (void)open:(int64_t)size;
-- (void)partSize:(int64_t)partSize num:(int32_t)num;
+- (void)partSize:(int64_t)partSize num:(long)num;
 - (void)uploadComplete:(int64_t)fileSize streamSize:(int64_t)streamSize storageSize:(int64_t)storageSize;
 - (void)uploadID:(NSString* _Nullable)uploadID;
-- (void)uploadPartComplete:(int32_t)index partSize:(int64_t)partSize partHash:(NSString* _Nullable)partHash;
+- (void)uploadPartComplete:(long)index partSize:(int64_t)partSize partHash:(NSString* _Nullable)partHash;
 @end
 
 #endif
