@@ -328,6 +328,8 @@ FOUNDATION_EXPORT void Open_im_sdkTransferGroupOwner(id<Open_im_sdk_callbackBase
 
 FOUNDATION_EXPORT void Open_im_sdkTypingStatusUpdate(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable recvID, NSString* _Nullable msgTip);
 
+FOUNDATION_EXPORT void Open_im_sdkUnInitSDK(NSString* _Nullable operationID);
+
 FOUNDATION_EXPORT void Open_im_sdkUpdateFcmToken(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDList);
 
 /**
