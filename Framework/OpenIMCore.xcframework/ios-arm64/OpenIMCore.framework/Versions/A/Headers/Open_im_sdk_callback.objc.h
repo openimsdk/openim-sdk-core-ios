@@ -159,6 +159,7 @@
 
 @protocol Open_im_sdk_callbackOnUserListener <NSObject>
 - (void)onSelfInfoUpdated:(NSString* _Nullable)userInfo;
+- (void)onUserStatusChanged:(NSString* _Nullable)statusMap;
 @end
 
 @protocol Open_im_sdk_callbackSendMsgCallBack <NSObject>
@@ -397,6 +398,7 @@ FOUNDATION_EXPORT id<Open_im_sdk_callbackOnFriendshipListenerSdk> _Nullable Open
 
 - (nonnull instancetype)initWithRef:(_Nonnull id)ref;
 - (void)onSelfInfoUpdated:(NSString* _Nullable)userInfo;
+- (void)onUserStatusChanged:(NSString* _Nullable)statusMap;
 @end
 
 @interface Open_im_sdk_callbackSendMsgCallBack : NSObject <goSeqRefInterface, Open_im_sdk_callbackSendMsgCallBack> {

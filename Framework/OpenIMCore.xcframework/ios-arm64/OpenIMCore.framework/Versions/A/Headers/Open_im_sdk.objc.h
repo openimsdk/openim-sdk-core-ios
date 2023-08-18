@@ -189,7 +189,15 @@ FOUNDATION_EXPORT void Open_im_sdkGetSpecifiedGroupMembersInfo(id<Open_im_sdk_ca
 
 FOUNDATION_EXPORT void Open_im_sdkGetSpecifiedGroupsInfo(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupIDList);
 
+/**
+ * GetSubscribeUsersStatus Get the online status of subscribers.
+ */
+FOUNDATION_EXPORT void Open_im_sdkGetSubscribeUsersStatus(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
+
 FOUNDATION_EXPORT void Open_im_sdkGetTotalUnreadMsgCount(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
+
+// skipped function GetUserStatus with unsupported parameter or return types
+
 
 // skipped function GetUserWorker with unsupported parameter or return types
 
@@ -197,7 +205,7 @@ FOUNDATION_EXPORT void Open_im_sdkGetTotalUnreadMsgCount(id<Open_im_sdk_callback
 FOUNDATION_EXPORT void Open_im_sdkGetUsersInfo(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDs);
 
 /**
- * GetUsersInfo obtains the information about multiple users.
+ * GetUsersInfoFromSrv obtains the information about multiple users.
  */
 FOUNDATION_EXPORT void Open_im_sdkGetUsersInfoFromSrv(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDs);
 
@@ -324,11 +332,17 @@ FOUNDATION_EXPORT void Open_im_sdkSetSelfInfo(id<Open_im_sdk_callbackBase> _Null
 
 FOUNDATION_EXPORT void Open_im_sdkSetUserListener(id<Open_im_sdk_callbackOnUserListener> _Nullable listener);
 
+// skipped function SubscribeUsersStatus with unsupported parameter or return types
+
+
 FOUNDATION_EXPORT void Open_im_sdkTransferGroupOwner(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID, NSString* _Nullable newOwnerUserID);
 
 FOUNDATION_EXPORT void Open_im_sdkTypingStatusUpdate(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable recvID, NSString* _Nullable msgTip);
 
 FOUNDATION_EXPORT void Open_im_sdkUnInitSDK(NSString* _Nullable operationID);
+
+// skipped function UnsubscribeUsersStatus with unsupported parameter or return types
+
 
 FOUNDATION_EXPORT void Open_im_sdkUpdateFcmToken(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDList);
 
