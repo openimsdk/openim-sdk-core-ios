@@ -86,7 +86,7 @@ FOUNDATION_EXPORT void Open_im_sdkCreateGroup(id<Open_im_sdk_callbackBase> _Null
 
 FOUNDATION_EXPORT NSString* _Nonnull Open_im_sdkCreateImageMessage(NSString* _Nullable operationID, NSString* _Nullable imagePath);
 
-FOUNDATION_EXPORT NSString* _Nonnull Open_im_sdkCreateImageMessageByURL(NSString* _Nullable operationID, NSString* _Nullable sourcePicture, NSString* _Nullable bigPicture, NSString* _Nullable snapshotPicture);
+FOUNDATION_EXPORT NSString* _Nonnull Open_im_sdkCreateImageMessageByURL(NSString* _Nullable operationID, NSString* _Nullable sourcePath, NSString* _Nullable sourcePicture, NSString* _Nullable bigPicture, NSString* _Nullable snapshotPicture);
 
 FOUNDATION_EXPORT NSString* _Nonnull Open_im_sdkCreateImageMessageFromFullPath(NSString* _Nullable operationID, NSString* _Nullable imageFullPath);
 
@@ -211,7 +211,7 @@ FOUNDATION_EXPORT void Open_im_sdkGetUsersInfo(id<Open_im_sdk_callbackBase> _Nul
  */
 FOUNDATION_EXPORT void Open_im_sdkGetUsersInfoFromSrv(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDs);
 
-FOUNDATION_EXPORT void Open_im_sdkGetUsersInfoStranger(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDs, NSString* _Nullable groupID);
+FOUNDATION_EXPORT void Open_im_sdkGetUsersInfoWithCache(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDs, NSString* _Nullable groupID);
 
 FOUNDATION_EXPORT void Open_im_sdkHideConversation(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID);
 
@@ -360,6 +360,8 @@ FOUNDATION_EXPORT void Open_im_sdkUpdateFcmToken(id<Open_im_sdk_callbackBase> _N
 FOUNDATION_EXPORT void Open_im_sdkUpdateMsgSenderInfo(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable nickname, NSString* _Nullable faceURL);
 
 FOUNDATION_EXPORT void Open_im_sdkUploadFile(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable req, id<Open_im_sdk_callbackUploadFileCallback> _Nullable progress);
+
+FOUNDATION_EXPORT void Open_im_sdkUploadLogs(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable uploadlogParams);
 
 @class Open_im_sdkCaller;
 
