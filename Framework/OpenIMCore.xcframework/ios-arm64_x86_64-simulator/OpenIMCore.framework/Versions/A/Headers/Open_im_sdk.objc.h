@@ -112,15 +112,11 @@ FOUNDATION_EXPORT NSString* _Nonnull Open_im_sdkCreateVideoMessageByURL(NSString
 
 FOUNDATION_EXPORT NSString* _Nonnull Open_im_sdkCreateVideoMessageFromFullPath(NSString* _Nullable operationID, NSString* _Nullable videoFullPath, NSString* _Nullable videoType, int64_t duration, NSString* _Nullable snapshotFullPath);
 
-FOUNDATION_EXPORT void Open_im_sdkDeleteAllConversationFromLocal(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
-
 FOUNDATION_EXPORT void Open_im_sdkDeleteAllMsgFromLocal(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
 
 FOUNDATION_EXPORT void Open_im_sdkDeleteAllMsgFromLocalAndSvr(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
 
 FOUNDATION_EXPORT void Open_im_sdkDeleteConversationAndDeleteAllMsg(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID);
-
-FOUNDATION_EXPORT void Open_im_sdkDeleteConversationFromLocal(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID);
 
 FOUNDATION_EXPORT void Open_im_sdkDeleteFriend(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable friendUserID);
 
@@ -146,6 +142,9 @@ FOUNDATION_EXPORT NSString* _Nonnull Open_im_sdkGetConversationIDBySessionType(N
 
 FOUNDATION_EXPORT void Open_im_sdkGetConversationListSplit(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, long offset, long count);
 
+/**
+ * deprecated
+ */
 FOUNDATION_EXPORT void Open_im_sdkGetConversationRecvMessageOpt(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationIDList);
 
 FOUNDATION_EXPORT void Open_im_sdkGetFriendApplicationListAsApplicant(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
@@ -212,6 +211,8 @@ FOUNDATION_EXPORT void Open_im_sdkGetUsersInfo(id<Open_im_sdk_callbackBase> _Nul
 FOUNDATION_EXPORT void Open_im_sdkGetUsersInfoFromSrv(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDs);
 
 FOUNDATION_EXPORT void Open_im_sdkGetUsersInfoWithCache(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDs, NSString* _Nullable groupID);
+
+FOUNDATION_EXPORT void Open_im_sdkHideAllConversations(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
 
 FOUNDATION_EXPORT void Open_im_sdkHideConversation(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID);
 
@@ -352,7 +353,7 @@ FOUNDATION_EXPORT void Open_im_sdkUnInitSDK(NSString* _Nullable operationID);
  */
 FOUNDATION_EXPORT void Open_im_sdkUnsubscribeUsersStatus(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDs);
 
-FOUNDATION_EXPORT void Open_im_sdkUpdateFcmToken(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDList);
+FOUNDATION_EXPORT void Open_im_sdkUpdateFcmToken(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable fcmToken, int64_t expireTime);
 
 /**
  * UpdateMsgSenderInfo updates the message sender's nickname and face URL.
@@ -361,7 +362,7 @@ FOUNDATION_EXPORT void Open_im_sdkUpdateMsgSenderInfo(id<Open_im_sdk_callbackBas
 
 FOUNDATION_EXPORT void Open_im_sdkUploadFile(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable req, id<Open_im_sdk_callbackUploadFileCallback> _Nullable progress);
 
-FOUNDATION_EXPORT void Open_im_sdkUploadLogs(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable uploadlogParams);
+FOUNDATION_EXPORT void Open_im_sdkUploadLogs(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable uploadLogParams);
 
 @class Open_im_sdkCaller;
 
