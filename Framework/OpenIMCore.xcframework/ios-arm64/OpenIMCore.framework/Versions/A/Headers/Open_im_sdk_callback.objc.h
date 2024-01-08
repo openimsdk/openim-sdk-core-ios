@@ -79,9 +79,6 @@
 - (void)onConversationChanged:(NSString* _Nullable)conversationList;
 - (void)onConversationUserInputStatusChanged:(NSString* _Nullable)change;
 - (void)onNewConversation:(NSString* _Nullable)conversationList;
-/**
- * OnSyncServerProgress(progress int)
- */
 - (void)onSyncServerFailed;
 - (void)onSyncServerFinish;
 - (void)onSyncServerStart;
@@ -140,25 +137,10 @@
 @end
 
 @protocol Open_im_sdk_callbackOnListenerForService <NSObject>
-/**
- * 好友申请被同意
- */
 - (void)onFriendApplicationAccepted:(NSString* _Nullable)groupApplication;
-/**
- * 有人申请添加你为好友
- */
 - (void)onFriendApplicationAdded:(NSString* _Nullable)friendApplication;
-/**
- * 进群申请被同意
- */
 - (void)onGroupApplicationAccepted:(NSString* _Nullable)groupApplication;
-/**
- * 有人申请进群
- */
 - (void)onGroupApplicationAdded:(NSString* _Nullable)groupApplication;
-/**
- * 收到新消息
- */
 - (void)onRecvNewMessage:(NSString* _Nullable)message;
 @end
 
