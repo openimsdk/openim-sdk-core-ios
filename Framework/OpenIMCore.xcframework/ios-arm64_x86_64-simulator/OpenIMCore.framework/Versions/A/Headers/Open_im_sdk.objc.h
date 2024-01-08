@@ -103,6 +103,8 @@ FOUNDATION_EXPORT void Open_im_sdkChangeGroupMemberMute(id<Open_im_sdk_callbackB
 
 FOUNDATION_EXPORT void Open_im_sdkChangeGroupMute(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID, BOOL isMute);
 
+FOUNDATION_EXPORT void Open_im_sdkChangeInputStates(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, BOOL focus);
+
 FOUNDATION_EXPORT void Open_im_sdkCheckFriend(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDList);
 
 /**
@@ -212,6 +214,8 @@ FOUNDATION_EXPORT void Open_im_sdkGetGroupMemberList(id<Open_im_sdk_callbackBase
 FOUNDATION_EXPORT void Open_im_sdkGetGroupMemberListByJoinTimeFilter(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID, int32_t offset, int32_t count, int64_t joinTimeBegin, int64_t joinTimeEnd, NSString* _Nullable filterUserIDList);
 
 FOUNDATION_EXPORT void Open_im_sdkGetGroupMemberOwnerAndAdmin(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID);
+
+FOUNDATION_EXPORT void Open_im_sdkGetInputStates(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, NSString* _Nullable userID);
 
 FOUNDATION_EXPORT void Open_im_sdkGetJoinedGroupList(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
 

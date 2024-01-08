@@ -59,6 +59,7 @@
 - (void)onRecvMessageExtensionsDeleted:(NSString* _Nullable)msgID reactionExtensionKeyList:(NSString* _Nullable)reactionExtensionKeyList;
 - (void)onRecvNewMessage:(NSString* _Nullable)message;
 - (void)onRecvOfflineNewMessage:(NSString* _Nullable)message;
+- (void)onRecvOnlineOnlyMessage:(NSString* _Nullable)message;
 @end
 
 @protocol Open_im_sdk_callbackOnBatchMsgListener <NSObject>
@@ -76,6 +77,7 @@
 
 @protocol Open_im_sdk_callbackOnConversationListener <NSObject>
 - (void)onConversationChanged:(NSString* _Nullable)conversationList;
+- (void)onConversationUserInputStatusChanged:(NSString* _Nullable)change;
 - (void)onNewConversation:(NSString* _Nullable)conversationList;
 /**
  * OnSyncServerProgress(progress int)
@@ -261,6 +263,7 @@
 - (void)onRecvMessageExtensionsDeleted:(NSString* _Nullable)msgID reactionExtensionKeyList:(NSString* _Nullable)reactionExtensionKeyList;
 - (void)onRecvNewMessage:(NSString* _Nullable)message;
 - (void)onRecvOfflineNewMessage:(NSString* _Nullable)message;
+- (void)onRecvOnlineOnlyMessage:(NSString* _Nullable)message;
 @end
 
 @interface Open_im_sdk_callbackOnBatchMsgListener : NSObject <goSeqRefInterface, Open_im_sdk_callbackOnBatchMsgListener> {
@@ -290,6 +293,7 @@
 
 - (nonnull instancetype)initWithRef:(_Nonnull id)ref;
 - (void)onConversationChanged:(NSString* _Nullable)conversationList;
+- (void)onConversationUserInputStatusChanged:(NSString* _Nullable)change;
 - (void)onNewConversation:(NSString* _Nullable)conversationList;
 /**
  * OnSyncServerProgress(progress int)
