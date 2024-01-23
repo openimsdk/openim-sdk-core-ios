@@ -385,14 +385,8 @@ FOUNDATION_EXPORT void Open_im_sdkSetMessageLocalEx(id<Open_im_sdk_callbackBase>
 
 /**
  * SetSelfInfo sets the user's own information.
-Deprecated: user SetSelfInfoEx instead
  */
 FOUNDATION_EXPORT void Open_im_sdkSetSelfInfo(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userInfo);
-
-/**
- * SetSelfInfoEx sets the user's own information with Ex field.
- */
-FOUNDATION_EXPORT void Open_im_sdkSetSelfInfoEx(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userInfo);
 
 FOUNDATION_EXPORT void Open_im_sdkSetUserListener(id<Open_im_sdk_callbackOnUserListener> _Nullable listener);
 
@@ -421,6 +415,6 @@ FOUNDATION_EXPORT void Open_im_sdkUpdateMsgSenderInfo(id<Open_im_sdk_callbackBas
 
 FOUNDATION_EXPORT void Open_im_sdkUploadFile(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable req, id<Open_im_sdk_callbackUploadFileCallback> _Nullable progress);
 
-FOUNDATION_EXPORT void Open_im_sdkUploadLogs(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, id<Open_im_sdk_callbackUploadLogProgress> _Nullable progress);
+FOUNDATION_EXPORT void Open_im_sdkUploadLogs(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable ex, id<Open_im_sdk_callbackUploadLogProgress> _Nullable progress);
 
 #endif
