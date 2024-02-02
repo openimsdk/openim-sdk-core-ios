@@ -78,13 +78,14 @@
 FOUNDATION_EXPORT const int64_t Open_im_sdkLogged;
 FOUNDATION_EXPORT const int64_t Open_im_sdkLogging;
 FOUNDATION_EXPORT const int64_t Open_im_sdkLogoutStatus;
+FOUNDATION_EXPORT NSString* _Nonnull const Open_im_sdkLogoutTips;
 
 @interface Open_im_sdk : NSObject
 + (NSError* _Nullable) errNotImplemented;
 + (void) setErrNotImplemented:(NSError* _Nullable)v;
 
 /**
- * Client-independent user class
+ * UserForSDK Client-independent user class
  */
 + (Open_im_sdkLoginMgr* _Nullable) userForSDK;
 + (void) setUserForSDK:(Open_im_sdkLoginMgr* _Nullable)v;
