@@ -36,5 +36,6 @@ Pod::Spec.new do |s|
       'ARCHS[sdk=iphonesimulator*]' => '$(ARCHS_STANDARD_64_BIT)'
   }
   
+  s.library = 'resolv'
   s.vendored_frameworks = 'Framework/*.xcframework'
 end
