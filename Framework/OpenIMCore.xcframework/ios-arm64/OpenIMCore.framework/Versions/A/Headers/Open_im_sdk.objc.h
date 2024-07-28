@@ -67,6 +67,7 @@
 - (void)setFriendListener:(id<Open_im_sdk_callbackOnFriendshipListener> _Nullable)friendListener;
 - (void)setGroupListener:(id<Open_im_sdk_callbackOnGroupListener> _Nullable)groupListener;
 - (void)setMessageKvInfoListener:(id<Open_im_sdk_callbackOnMessageKvInfoListener> _Nullable)messageKvInfoListener;
+- (void)setToken:(NSString* _Nullable)userID token:(NSString* _Nullable)token;
 - (void)setUserListener:(id<Open_im_sdk_callbackOnUserListener> _Nullable)userListener;
 - (id<Open_im_sdk_callbackOnSignalingListener> _Nullable)signalingListener;
 // skipped method LoginMgr.Third with unsupported parameter or return types
@@ -246,6 +247,8 @@ FOUNDATION_EXPORT NSString* _Nonnull Open_im_sdkGetLoginUserID(void);
 FOUNDATION_EXPORT void Open_im_sdkGetMultipleConversation(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationIDList);
 
 FOUNDATION_EXPORT void Open_im_sdkGetOneConversation(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, int32_t sessionType, NSString* _Nullable sourceID);
+
+FOUNDATION_EXPORT NSString* _Nonnull Open_im_sdkGetSdkVersion(void);
 
 /**
  * GetSelfUserInfo obtains the user's own information.
