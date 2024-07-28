@@ -11,6 +11,8 @@
 #include "Universe.objc.h"
 
 
+@protocol Open_im_sdk_callbackAppDataSyncListener;
+@class Open_im_sdk_callbackAppDataSyncListener;
 @protocol Open_im_sdk_callbackBase;
 @class Open_im_sdk_callbackBase;
 @protocol Open_im_sdk_callbackOnAdvancedMsgListener;
@@ -44,6 +46,12 @@
 @protocol Open_im_sdk_callbackUploadLogProgress;
 @class Open_im_sdk_callbackUploadLogProgress;
 
+@protocol Open_im_sdk_callbackAppDataSyncListener <NSObject>
+- (void)onAppDataSyncFinish;
+- (void)onAppDataSyncProgress:(long)progress;
+- (void)onAppDataSyncStart;
+@end
+
 @protocol Open_im_sdk_callbackBase <NSObject>
 - (void)onError:(int32_t)errCode errMsg:(NSString* _Nullable)errMsg;
 - (void)onSuccess:(NSString* _Nullable)data;
@@ -73,15 +81,17 @@
 - (void)onConnecting;
 - (void)onKickedOffline;
 - (void)onUserTokenExpired;
+- (void)onUserTokenInvalid:(NSString* _Nullable)errMsg;
 @end
 
 @protocol Open_im_sdk_callbackOnConversationListener <NSObject>
 - (void)onConversationChanged:(NSString* _Nullable)conversationList;
 - (void)onConversationUserInputStatusChanged:(NSString* _Nullable)change;
 - (void)onNewConversation:(NSString* _Nullable)conversationList;
-- (void)onSyncServerFailed;
-- (void)onSyncServerFinish;
-- (void)onSyncServerStart;
+- (void)onSyncServerFailed:(BOOL)reinstalled;
+- (void)onSyncServerFinish:(BOOL)reinstalled;
+- (void)onSyncServerProgress:(long)progress;
+- (void)onSyncServerStart:(BOOL)reinstalled;
 - (void)onTotalUnreadMessageCountChanged:(int32_t)totalUnreadCount;
 @end
 
@@ -137,10 +147,25 @@
 @end
 
 @protocol Open_im_sdk_callbackOnListenerForService <NSObject>
+/**
+ * 好友申请被同意
+ */
 - (void)onFriendApplicationAccepted:(NSString* _Nullable)groupApplication;
+/**
+ * 有人申请添加你为好友
+ */
 - (void)onFriendApplicationAdded:(NSString* _Nullable)friendApplication;
+/**
+ * 进群申请被同意
+ */
 - (void)onGroupApplicationAccepted:(NSString* _Nullable)groupApplication;
+/**
+ * 有人申请进群
+ */
 - (void)onGroupApplicationAdded:(NSString* _Nullable)groupApplication;
+/**
+ * 收到新消息
+ */
 - (void)onRecvNewMessage:(NSString* _Nullable)message;
 @end
 
@@ -163,6 +188,9 @@
 
 @protocol Open_im_sdk_callbackOnUserListener <NSObject>
 - (void)onSelfInfoUpdated:(NSString* _Nullable)userInfo;
+- (void)onUserCommandAdd:(NSString* _Nullable)userCommand;
+- (void)onUserCommandDelete:(NSString* _Nullable)userCommand;
+- (void)onUserCommandUpdate:(NSString* _Nullable)userCommand;
 - (void)onUserStatusChanged:(NSString* _Nullable)userOnlineStatus;
 @end
 
@@ -189,6 +217,8 @@
 
 // skipped function NewOnFriendshipListenerSdk with unsupported parameter or return types
 
+
+@class Open_im_sdk_callbackAppDataSyncListener;
 
 @class Open_im_sdk_callbackBase;
 
@@ -221,6 +251,16 @@
 @class Open_im_sdk_callbackUploadFileCallback;
 
 @class Open_im_sdk_callbackUploadLogProgress;
+
+@interface Open_im_sdk_callbackAppDataSyncListener : NSObject <goSeqRefInterface, Open_im_sdk_callbackAppDataSyncListener> {
+}
+@property(strong, readonly) _Nonnull id _ref;
+
+- (nonnull instancetype)initWithRef:(_Nonnull id)ref;
+- (void)onAppDataSyncFinish;
+- (void)onAppDataSyncProgress:(long)progress;
+- (void)onAppDataSyncStart;
+@end
 
 @interface Open_im_sdk_callbackBase : NSObject <goSeqRefInterface, Open_im_sdk_callbackBase> {
 }
@@ -267,6 +307,7 @@
 - (void)onConnecting;
 - (void)onKickedOffline;
 - (void)onUserTokenExpired;
+- (void)onUserTokenInvalid:(NSString* _Nullable)errMsg;
 @end
 
 @interface Open_im_sdk_callbackOnConversationListener : NSObject <goSeqRefInterface, Open_im_sdk_callbackOnConversationListener> {
@@ -277,12 +318,10 @@
 - (void)onConversationChanged:(NSString* _Nullable)conversationList;
 - (void)onConversationUserInputStatusChanged:(NSString* _Nullable)change;
 - (void)onNewConversation:(NSString* _Nullable)conversationList;
-/**
- * OnSyncServerProgress(progress int)
- */
-- (void)onSyncServerFailed;
-- (void)onSyncServerFinish;
-- (void)onSyncServerStart;
+- (void)onSyncServerFailed:(BOOL)reinstalled;
+- (void)onSyncServerFinish:(BOOL)reinstalled;
+- (void)onSyncServerProgress:(long)progress;
+- (void)onSyncServerStart:(BOOL)reinstalled;
 - (void)onTotalUnreadMessageCountChanged:(int32_t)totalUnreadCount;
 @end
 
@@ -411,6 +450,9 @@
 
 - (nonnull instancetype)initWithRef:(_Nonnull id)ref;
 - (void)onSelfInfoUpdated:(NSString* _Nullable)userInfo;
+- (void)onUserCommandAdd:(NSString* _Nullable)userCommand;
+- (void)onUserCommandDelete:(NSString* _Nullable)userCommand;
+- (void)onUserCommandUpdate:(NSString* _Nullable)userCommand;
 - (void)onUserStatusChanged:(NSString* _Nullable)userOnlineStatus;
 @end
 
