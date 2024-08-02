@@ -47,9 +47,13 @@
 - (id<Open_im_sdk_callbackOnGroupListener> _Nullable)groupListener;
 // skipped method LoginMgr.ImConfig with unsupported parameter or return types
 
+// skipped method LoginMgr.InitMgr with unsupported parameter or return types
+
 // skipped method LoginMgr.InitSDK with unsupported parameter or return types
 
 // skipped method LoginMgr.Login with unsupported parameter or return types
+
+// skipped method LoginMgr.LoginWithOutInit with unsupported parameter or return types
 
 // skipped method LoginMgr.Logout with unsupported parameter or return types
 
@@ -67,7 +71,6 @@
 - (void)setFriendListener:(id<Open_im_sdk_callbackOnFriendshipListener> _Nullable)friendListener;
 - (void)setGroupListener:(id<Open_im_sdk_callbackOnGroupListener> _Nullable)groupListener;
 - (void)setMessageKvInfoListener:(id<Open_im_sdk_callbackOnMessageKvInfoListener> _Nullable)messageKvInfoListener;
-- (void)setToken:(NSString* _Nullable)userID token:(NSString* _Nullable)token;
 - (void)setUserListener:(id<Open_im_sdk_callbackOnUserListener> _Nullable)userListener;
 - (id<Open_im_sdk_callbackOnSignalingListener> _Nullable)signalingListener;
 // skipped method LoginMgr.Third with unsupported parameter or return types
@@ -439,6 +442,6 @@ FOUNDATION_EXPORT void Open_im_sdkUpdateMsgSenderInfo(id<Open_im_sdk_callbackBas
 
 FOUNDATION_EXPORT void Open_im_sdkUploadFile(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable req, id<Open_im_sdk_callbackUploadFileCallback> _Nullable progress);
 
-FOUNDATION_EXPORT void Open_im_sdkUploadLogs(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable ex, id<Open_im_sdk_callbackUploadLogProgress> _Nullable progress);
+FOUNDATION_EXPORT void Open_im_sdkUploadLogs(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, long line, NSString* _Nullable ex, id<Open_im_sdk_callbackUploadLogProgress> _Nullable progress);
 
 #endif
