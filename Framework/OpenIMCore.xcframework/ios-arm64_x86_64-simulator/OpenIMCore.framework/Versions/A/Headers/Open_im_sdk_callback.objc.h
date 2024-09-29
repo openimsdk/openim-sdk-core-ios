@@ -11,8 +11,6 @@
 #include "Universe.objc.h"
 
 
-@protocol Open_im_sdk_callbackAppDataSyncListener;
-@class Open_im_sdk_callbackAppDataSyncListener;
 @protocol Open_im_sdk_callbackBase;
 @class Open_im_sdk_callbackBase;
 @protocol Open_im_sdk_callbackOnAdvancedMsgListener;
@@ -46,12 +44,6 @@
 @protocol Open_im_sdk_callbackUploadLogProgress;
 @class Open_im_sdk_callbackUploadLogProgress;
 
-@protocol Open_im_sdk_callbackAppDataSyncListener <NSObject>
-- (void)onAppDataSyncFinish;
-- (void)onAppDataSyncProgress:(long)progress;
-- (void)onAppDataSyncStart;
-@end
-
 @protocol Open_im_sdk_callbackBase <NSObject>
 - (void)onError:(int32_t)errCode errMsg:(NSString* _Nullable)errMsg;
 - (void)onSuccess:(NSString* _Nullable)data;
@@ -61,10 +53,6 @@
 - (void)onMsgDeleted:(NSString* _Nullable)message;
 - (void)onNewRecvMessageRevoked:(NSString* _Nullable)messageRevoked;
 - (void)onRecvC2CReadReceipt:(NSString* _Nullable)msgReceiptList;
-- (void)onRecvGroupReadReceipt:(NSString* _Nullable)groupMsgReceiptList;
-- (void)onRecvMessageExtensionsAdded:(NSString* _Nullable)msgID reactionExtensionList:(NSString* _Nullable)reactionExtensionList;
-- (void)onRecvMessageExtensionsChanged:(NSString* _Nullable)msgID reactionExtensionList:(NSString* _Nullable)reactionExtensionList;
-- (void)onRecvMessageExtensionsDeleted:(NSString* _Nullable)msgID reactionExtensionKeyList:(NSString* _Nullable)reactionExtensionKeyList;
 - (void)onRecvNewMessage:(NSString* _Nullable)message;
 - (void)onRecvOfflineNewMessage:(NSString* _Nullable)message;
 - (void)onRecvOnlineOnlyMessage:(NSString* _Nullable)message;
@@ -148,23 +136,23 @@
 
 @protocol Open_im_sdk_callbackOnListenerForService <NSObject>
 /**
- * 好友申请被同意
+ * OnFriendApplicationAccepted Friend request has been accepted
  */
-- (void)onFriendApplicationAccepted:(NSString* _Nullable)groupApplication;
+- (void)onFriendApplicationAccepted:(NSString* _Nullable)friendApplication;
 /**
- * 有人申请添加你为好友
+ * OnFriendApplicationAdded Someone applied to add you as a friend
  */
 - (void)onFriendApplicationAdded:(NSString* _Nullable)friendApplication;
 /**
- * 进群申请被同意
+ * OnGroupApplicationAccepted Group join application has been accepted
  */
 - (void)onGroupApplicationAccepted:(NSString* _Nullable)groupApplication;
 /**
- * 有人申请进群
+ * OnGroupApplicationAdded Someone applied to join a group
  */
 - (void)onGroupApplicationAdded:(NSString* _Nullable)groupApplication;
 /**
- * 收到新消息
+ * OnRecvNewMessage Received a new message
  */
 - (void)onRecvNewMessage:(NSString* _Nullable)message;
 @end
@@ -201,13 +189,37 @@
 @end
 
 @protocol Open_im_sdk_callbackUploadFileCallback <NSObject>
+/**
+ * Complete The file upload is complete, providing the final size, URL, and type of the file
+ */
 - (void)complete:(int64_t)size url:(NSString* _Nullable)url typ:(long)typ;
+/**
+ * HashPartComplete All parts have been hashed, providing the combined hash of all parts and the final file hash
+ */
 - (void)hashPartComplete:(NSString* _Nullable)partsHash fileHash:(NSString* _Nullable)fileHash;
+/**
+ * HashPartProgress Progress of hashing each part, including the part index, size, and hash value
+ */
 - (void)hashPartProgress:(long)index size:(int64_t)size partHash:(NSString* _Nullable)partHash;
+/**
+ * Open a file with a given size
+ */
 - (void)open:(int64_t)size;
+/**
+ * PartSize Set the size of each part and the total number of parts
+ */
 - (void)partSize:(int64_t)partSize num:(long)num;
+/**
+ * UploadComplete The entire file upload progress, including the file size, stream size, and storage size
+ */
 - (void)uploadComplete:(int64_t)fileSize streamSize:(int64_t)streamSize storageSize:(int64_t)storageSize;
+/**
+ * UploadID Upload ID is generated and provided
+ */
 - (void)uploadID:(NSString* _Nullable)uploadID;
+/**
+ * UploadPartComplete A specific part has completed uploading, providing the part index, size, and hash value
+ */
 - (void)uploadPartComplete:(long)index partSize:(int64_t)partSize partHash:(NSString* _Nullable)partHash;
 @end
 
@@ -217,8 +229,6 @@
 
 // skipped function NewOnFriendshipListenerSdk with unsupported parameter or return types
 
-
-@class Open_im_sdk_callbackAppDataSyncListener;
 
 @class Open_im_sdk_callbackBase;
 
@@ -252,16 +262,6 @@
 
 @class Open_im_sdk_callbackUploadLogProgress;
 
-@interface Open_im_sdk_callbackAppDataSyncListener : NSObject <goSeqRefInterface, Open_im_sdk_callbackAppDataSyncListener> {
-}
-@property(strong, readonly) _Nonnull id _ref;
-
-- (nonnull instancetype)initWithRef:(_Nonnull id)ref;
-- (void)onAppDataSyncFinish;
-- (void)onAppDataSyncProgress:(long)progress;
-- (void)onAppDataSyncStart;
-@end
-
 @interface Open_im_sdk_callbackBase : NSObject <goSeqRefInterface, Open_im_sdk_callbackBase> {
 }
 @property(strong, readonly) _Nonnull id _ref;
@@ -279,10 +279,6 @@
 - (void)onMsgDeleted:(NSString* _Nullable)message;
 - (void)onNewRecvMessageRevoked:(NSString* _Nullable)messageRevoked;
 - (void)onRecvC2CReadReceipt:(NSString* _Nullable)msgReceiptList;
-- (void)onRecvGroupReadReceipt:(NSString* _Nullable)groupMsgReceiptList;
-- (void)onRecvMessageExtensionsAdded:(NSString* _Nullable)msgID reactionExtensionList:(NSString* _Nullable)reactionExtensionList;
-- (void)onRecvMessageExtensionsChanged:(NSString* _Nullable)msgID reactionExtensionList:(NSString* _Nullable)reactionExtensionList;
-- (void)onRecvMessageExtensionsDeleted:(NSString* _Nullable)msgID reactionExtensionKeyList:(NSString* _Nullable)reactionExtensionKeyList;
 - (void)onRecvNewMessage:(NSString* _Nullable)message;
 - (void)onRecvOfflineNewMessage:(NSString* _Nullable)message;
 - (void)onRecvOnlineOnlyMessage:(NSString* _Nullable)message;
@@ -398,23 +394,23 @@
 
 - (nonnull instancetype)initWithRef:(_Nonnull id)ref;
 /**
- * 好友申请被同意
+ * OnFriendApplicationAccepted Friend request has been accepted
  */
-- (void)onFriendApplicationAccepted:(NSString* _Nullable)groupApplication;
+- (void)onFriendApplicationAccepted:(NSString* _Nullable)friendApplication;
 /**
- * 有人申请添加你为好友
+ * OnFriendApplicationAdded Someone applied to add you as a friend
  */
 - (void)onFriendApplicationAdded:(NSString* _Nullable)friendApplication;
 /**
- * 进群申请被同意
+ * OnGroupApplicationAccepted Group join application has been accepted
  */
 - (void)onGroupApplicationAccepted:(NSString* _Nullable)groupApplication;
 /**
- * 有人申请进群
+ * OnGroupApplicationAdded Someone applied to join a group
  */
 - (void)onGroupApplicationAdded:(NSString* _Nullable)groupApplication;
 /**
- * 收到新消息
+ * OnRecvNewMessage Received a new message
  */
 - (void)onRecvNewMessage:(NSString* _Nullable)message;
 @end
@@ -471,13 +467,37 @@
 @property(strong, readonly) _Nonnull id _ref;
 
 - (nonnull instancetype)initWithRef:(_Nonnull id)ref;
+/**
+ * Complete The file upload is complete, providing the final size, URL, and type of the file
+ */
 - (void)complete:(int64_t)size url:(NSString* _Nullable)url typ:(long)typ;
+/**
+ * HashPartComplete All parts have been hashed, providing the combined hash of all parts and the final file hash
+ */
 - (void)hashPartComplete:(NSString* _Nullable)partsHash fileHash:(NSString* _Nullable)fileHash;
+/**
+ * HashPartProgress Progress of hashing each part, including the part index, size, and hash value
+ */
 - (void)hashPartProgress:(long)index size:(int64_t)size partHash:(NSString* _Nullable)partHash;
+/**
+ * Open a file with a given size
+ */
 - (void)open:(int64_t)size;
+/**
+ * PartSize Set the size of each part and the total number of parts
+ */
 - (void)partSize:(int64_t)partSize num:(long)num;
+/**
+ * UploadComplete The entire file upload progress, including the file size, stream size, and storage size
+ */
 - (void)uploadComplete:(int64_t)fileSize streamSize:(int64_t)streamSize storageSize:(int64_t)storageSize;
+/**
+ * UploadID Upload ID is generated and provided
+ */
 - (void)uploadID:(NSString* _Nullable)uploadID;
+/**
+ * UploadPartComplete A specific part has completed uploading, providing the part index, size, and hash value
+ */
 - (void)uploadPartComplete:(long)index partSize:(int64_t)partSize partHash:(NSString* _Nullable)partHash;
 @end
 

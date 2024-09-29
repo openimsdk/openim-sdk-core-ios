@@ -21,8 +21,6 @@
 - (nonnull instancetype)initWithRef:(_Nonnull id)ref;
 - (nullable instancetype)init;
 - (id<Open_im_sdk_callbackOnAdvancedMsgListener> _Nullable)advancedMsgListener;
-// skipped method LoginMgr.BaseCtx with unsupported parameter or return types
-
 - (id<Open_im_sdk_callbackOnBatchMsgListener> _Nullable)batchMsgListener;
 - (id<Open_im_sdk_callbackOnCustomBusinessListener> _Nullable)businessListener;
 // skipped method LoginMgr.Context with unsupported parameter or return types
@@ -33,11 +31,7 @@
 - (void)exit;
 // skipped method LoginMgr.File with unsupported parameter or return types
 
-// skipped method LoginMgr.Friend with unsupported parameter or return types
-
-- (id<Open_im_sdk_callbackOnFriendshipListener> _Nullable)friendListener;
-// skipped method LoginMgr.Full with unsupported parameter or return types
-
+- (id<Open_im_sdk_callbackOnFriendshipListener> _Nullable)friendshipListener;
 // skipped method LoginMgr.GetLoginStatus with unsupported parameter or return types
 
 - (NSString* _Nonnull)getLoginUserID;
@@ -47,13 +41,9 @@
 - (id<Open_im_sdk_callbackOnGroupListener> _Nullable)groupListener;
 // skipped method LoginMgr.ImConfig with unsupported parameter or return types
 
-// skipped method LoginMgr.InitMgr with unsupported parameter or return types
-
 // skipped method LoginMgr.InitSDK with unsupported parameter or return types
 
 // skipped method LoginMgr.Login with unsupported parameter or return types
-
-// skipped method LoginMgr.LoginWithOutInit with unsupported parameter or return types
 
 // skipped method LoginMgr.Logout with unsupported parameter or return types
 
@@ -62,13 +52,15 @@
 - (id<Open_im_sdk_callbackOnMessageKvInfoListener> _Nullable)msgKvListener;
 // skipped method LoginMgr.NetworkStatusChanged with unsupported parameter or return types
 
+// skipped method LoginMgr.Relation with unsupported parameter or return types
+
 - (void)setAdvancedMsgListener:(id<Open_im_sdk_callbackOnAdvancedMsgListener> _Nullable)advancedMsgListener;
 // skipped method LoginMgr.SetAppBackgroundStatus with unsupported parameter or return types
 
 - (void)setBatchMsgListener:(id<Open_im_sdk_callbackOnBatchMsgListener> _Nullable)batchMsgListener;
 - (void)setConversationListener:(id<Open_im_sdk_callbackOnConversationListener> _Nullable)conversationListener;
 - (void)setCustomBusinessListener:(id<Open_im_sdk_callbackOnCustomBusinessListener> _Nullable)listener;
-- (void)setFriendListener:(id<Open_im_sdk_callbackOnFriendshipListener> _Nullable)friendListener;
+- (void)setFriendshipListener:(id<Open_im_sdk_callbackOnFriendshipListener> _Nullable)friendshipListener;
 - (void)setGroupListener:(id<Open_im_sdk_callbackOnGroupListener> _Nullable)groupListener;
 - (void)setMessageKvInfoListener:(id<Open_im_sdk_callbackOnMessageKvInfoListener> _Nullable)messageKvInfoListener;
 - (void)setUserListener:(id<Open_im_sdk_callbackOnUserListener> _Nullable)userListener;
@@ -214,18 +206,13 @@ FOUNDATION_EXPORT NSString* _Nonnull Open_im_sdkGetConversationIDBySessionType(N
 
 FOUNDATION_EXPORT void Open_im_sdkGetConversationListSplit(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, long offset, long count);
 
-/**
- * deprecated
- */
-FOUNDATION_EXPORT void Open_im_sdkGetConversationRecvMessageOpt(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationIDList);
-
 FOUNDATION_EXPORT void Open_im_sdkGetFriendApplicationListAsApplicant(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
 
 FOUNDATION_EXPORT void Open_im_sdkGetFriendApplicationListAsRecipient(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
 
-FOUNDATION_EXPORT void Open_im_sdkGetFriendList(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
+FOUNDATION_EXPORT void Open_im_sdkGetFriendList(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, BOOL filterBlack);
 
-FOUNDATION_EXPORT void Open_im_sdkGetFriendListPage(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, int32_t offset, int32_t count);
+FOUNDATION_EXPORT void Open_im_sdkGetFriendListPage(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, int32_t offset, int32_t count, BOOL filterBlack);
 
 FOUNDATION_EXPORT void Open_im_sdkGetGroupApplicationListAsApplicant(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
 
@@ -258,7 +245,7 @@ FOUNDATION_EXPORT NSString* _Nonnull Open_im_sdkGetSdkVersion(void);
  */
 FOUNDATION_EXPORT void Open_im_sdkGetSelfUserInfo(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
 
-FOUNDATION_EXPORT void Open_im_sdkGetSpecifiedFriendsInfo(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDList);
+FOUNDATION_EXPORT void Open_im_sdkGetSpecifiedFriendsInfo(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDList, BOOL filterBlack);
 
 FOUNDATION_EXPORT void Open_im_sdkGetSpecifiedGroupMembersInfo(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID, NSString* _Nullable userIDList);
 
@@ -279,13 +266,6 @@ FOUNDATION_EXPORT void Open_im_sdkGetUserStatus(id<Open_im_sdk_callbackBase> _Nu
 FOUNDATION_EXPORT void Open_im_sdkGetUsersInGroup(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID, NSString* _Nullable userIDList);
 
 FOUNDATION_EXPORT void Open_im_sdkGetUsersInfo(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDs);
-
-/**
- * GetUsersInfoFromSrv obtains the information about multiple users.
- */
-FOUNDATION_EXPORT void Open_im_sdkGetUsersInfoFromSrv(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDs);
-
-FOUNDATION_EXPORT void Open_im_sdkGetUsersInfoWithCache(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDs, NSString* _Nullable groupID);
 
 FOUNDATION_EXPORT void Open_im_sdkHideAllConversations(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
 
@@ -309,6 +289,8 @@ FOUNDATION_EXPORT void Open_im_sdkLogin(id<Open_im_sdk_callbackBase> _Nullable c
 
 FOUNDATION_EXPORT void Open_im_sdkLogout(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
 
+FOUNDATION_EXPORT void Open_im_sdkLogs(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, long logLevel, NSString* _Nullable file, long line, NSString* _Nullable msgs, NSString* _Nullable err, NSString* _Nullable keyAndValue);
+
 /**
  * mark as read
  */
@@ -320,10 +302,6 @@ FOUNDATION_EXPORT void Open_im_sdkNetworkStatusChanged(id<Open_im_sdk_callbackBa
 
 FOUNDATION_EXPORT Open_im_sdkLoginMgr* _Nullable Open_im_sdkNewLoginMgr(void);
 
-FOUNDATION_EXPORT void Open_im_sdkPinConversation(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, BOOL isPinned);
-
-FOUNDATION_EXPORT void Open_im_sdkPinFriends(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable pinFriendsParams);
-
 FOUNDATION_EXPORT void Open_im_sdkQuitGroup(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID);
 
 FOUNDATION_EXPORT void Open_im_sdkRefuseFriendApplication(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDHandleMsg);
@@ -331,8 +309,6 @@ FOUNDATION_EXPORT void Open_im_sdkRefuseFriendApplication(id<Open_im_sdk_callbac
 FOUNDATION_EXPORT void Open_im_sdkRefuseGroupApplication(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID, NSString* _Nullable fromUserID, NSString* _Nullable handleMsg);
 
 FOUNDATION_EXPORT void Open_im_sdkRemoveBlack(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable removeUserID);
-
-FOUNDATION_EXPORT void Open_im_sdkResetConversationGroupAtType(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID);
 
 FOUNDATION_EXPORT void Open_im_sdkRevokeMessage(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, NSString* _Nullable clientMsgID);
 
@@ -358,47 +334,21 @@ FOUNDATION_EXPORT void Open_im_sdkSetAppBadge(id<Open_im_sdk_callbackBase> _Null
 
 FOUNDATION_EXPORT void Open_im_sdkSetBatchMsgListener(id<Open_im_sdk_callbackOnBatchMsgListener> _Nullable listener);
 
-FOUNDATION_EXPORT void Open_im_sdkSetConversationBurnDuration(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, int32_t duration);
+FOUNDATION_EXPORT void Open_im_sdkSetConversation(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, NSString* _Nullable req);
 
 FOUNDATION_EXPORT void Open_im_sdkSetConversationDraft(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, NSString* _Nullable draftText);
 
-FOUNDATION_EXPORT void Open_im_sdkSetConversationEx(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, NSString* _Nullable ex);
-
-FOUNDATION_EXPORT void Open_im_sdkSetConversationIsMsgDestruct(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, BOOL isMsgDestruct);
-
 FOUNDATION_EXPORT void Open_im_sdkSetConversationListener(id<Open_im_sdk_callbackOnConversationListener> _Nullable listener);
-
-FOUNDATION_EXPORT void Open_im_sdkSetConversationMsgDestructTime(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, int64_t msgDestructTime);
-
-FOUNDATION_EXPORT void Open_im_sdkSetConversationPrivateChat(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, BOOL isPrivate);
-
-FOUNDATION_EXPORT void Open_im_sdkSetConversationRecvMessageOpt(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, long opt);
 
 FOUNDATION_EXPORT void Open_im_sdkSetCustomBusinessListener(id<Open_im_sdk_callbackOnCustomBusinessListener> _Nullable listener);
 
 FOUNDATION_EXPORT void Open_im_sdkSetFriendListener(id<Open_im_sdk_callbackOnFriendshipListener> _Nullable listener);
 
-FOUNDATION_EXPORT void Open_im_sdkSetFriendRemark(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDRemark);
-
-FOUNDATION_EXPORT void Open_im_sdkSetFriendsEx(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable friendIDs, NSString* _Nullable ex);
-
-FOUNDATION_EXPORT void Open_im_sdkSetGlobalRecvMessageOpt(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, long opt);
-
-FOUNDATION_EXPORT void Open_im_sdkSetGroupApplyMemberFriend(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID, int32_t rule);
-
 FOUNDATION_EXPORT void Open_im_sdkSetGroupInfo(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupInfo);
 
 FOUNDATION_EXPORT void Open_im_sdkSetGroupListener(id<Open_im_sdk_callbackOnGroupListener> _Nullable listener);
 
-FOUNDATION_EXPORT void Open_im_sdkSetGroupLookMemberInfo(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID, int32_t rule);
-
 FOUNDATION_EXPORT void Open_im_sdkSetGroupMemberInfo(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupMemberInfo);
-
-FOUNDATION_EXPORT void Open_im_sdkSetGroupMemberNickname(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID, NSString* _Nullable userID, NSString* _Nullable groupMemberNickname);
-
-FOUNDATION_EXPORT void Open_im_sdkSetGroupMemberRoleLevel(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID, NSString* _Nullable userID, long roleLevel);
-
-FOUNDATION_EXPORT void Open_im_sdkSetGroupVerification(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID, int32_t verification);
 
 FOUNDATION_EXPORT void Open_im_sdkSetMessageKvInfoListener(id<Open_im_sdk_callbackOnMessageKvInfoListener> _Nullable listener);
 
@@ -406,14 +356,8 @@ FOUNDATION_EXPORT void Open_im_sdkSetMessageLocalEx(id<Open_im_sdk_callbackBase>
 
 /**
  * SetSelfInfo sets the user's own information.
-Deprecated: user SetSelfInfoEx instead
  */
 FOUNDATION_EXPORT void Open_im_sdkSetSelfInfo(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userInfo);
-
-/**
- * SetSelfInfoEx sets the user's own information with Ex field.
- */
-FOUNDATION_EXPORT void Open_im_sdkSetSelfInfoEx(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userInfo);
 
 FOUNDATION_EXPORT void Open_im_sdkSetUserListener(id<Open_im_sdk_callbackOnUserListener> _Nullable listener);
 
@@ -435,10 +379,7 @@ FOUNDATION_EXPORT void Open_im_sdkUnsubscribeUsersStatus(id<Open_im_sdk_callback
 
 FOUNDATION_EXPORT void Open_im_sdkUpdateFcmToken(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable fcmToken, int64_t expireTime);
 
-/**
- * UpdateMsgSenderInfo updates the message sender's nickname and face URL.
- */
-FOUNDATION_EXPORT void Open_im_sdkUpdateMsgSenderInfo(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable nickname, NSString* _Nullable faceURL);
+FOUNDATION_EXPORT void Open_im_sdkUpdateFriends(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable req);
 
 FOUNDATION_EXPORT void Open_im_sdkUploadFile(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable req, id<Open_im_sdk_callbackUploadFileCallback> _Nullable progress);
 
