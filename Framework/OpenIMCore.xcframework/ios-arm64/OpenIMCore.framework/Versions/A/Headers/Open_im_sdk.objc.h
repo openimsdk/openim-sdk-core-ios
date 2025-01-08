@@ -185,8 +185,6 @@ FOUNDATION_EXPORT void Open_im_sdkDeleteUserCommand(id<Open_im_sdk_callbackBase>
 
 FOUNDATION_EXPORT void Open_im_sdkDismissGroup(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID);
 
-FOUNDATION_EXPORT void Open_im_sdkFetchSurroundingMessages(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, int64_t seq, int64_t before, int64_t after);
-
 FOUNDATION_EXPORT void Open_im_sdkFindMessageList(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable findMessageOptions);
 
 FOUNDATION_EXPORT void Open_im_sdkGetAdvancedHistoryMessageList(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable getMessageOptions);
