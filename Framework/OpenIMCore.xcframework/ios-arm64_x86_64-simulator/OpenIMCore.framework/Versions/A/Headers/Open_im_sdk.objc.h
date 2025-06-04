@@ -206,17 +206,21 @@ FOUNDATION_EXPORT NSString* _Nonnull Open_im_sdkGetConversationIDBySessionType(N
 
 FOUNDATION_EXPORT void Open_im_sdkGetConversationListSplit(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, long offset, long count);
 
-FOUNDATION_EXPORT void Open_im_sdkGetFriendApplicationListAsApplicant(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
+FOUNDATION_EXPORT void Open_im_sdkGetFriendApplicationListAsApplicant(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable req);
 
-FOUNDATION_EXPORT void Open_im_sdkGetFriendApplicationListAsRecipient(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
+FOUNDATION_EXPORT void Open_im_sdkGetFriendApplicationListAsRecipient(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable req);
+
+FOUNDATION_EXPORT void Open_im_sdkGetFriendApplicationUnhandledCount(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable req);
 
 FOUNDATION_EXPORT void Open_im_sdkGetFriendList(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, BOOL filterBlack);
 
 FOUNDATION_EXPORT void Open_im_sdkGetFriendListPage(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, int32_t offset, int32_t count, BOOL filterBlack);
 
-FOUNDATION_EXPORT void Open_im_sdkGetGroupApplicationListAsApplicant(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
+FOUNDATION_EXPORT void Open_im_sdkGetGroupApplicationListAsApplicant(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable req);
 
-FOUNDATION_EXPORT void Open_im_sdkGetGroupApplicationListAsRecipient(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
+FOUNDATION_EXPORT void Open_im_sdkGetGroupApplicationListAsRecipient(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable req);
+
+FOUNDATION_EXPORT void Open_im_sdkGetGroupApplicationUnhandledCount(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable req);
 
 FOUNDATION_EXPORT void Open_im_sdkGetGroupMemberList(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID, int32_t filter, int32_t offset, int32_t count);
 
