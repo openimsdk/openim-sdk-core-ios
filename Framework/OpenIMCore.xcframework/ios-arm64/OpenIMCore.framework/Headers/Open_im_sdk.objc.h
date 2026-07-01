@@ -12,53 +12,52 @@
 
 #include "Open_im_sdk_callback.objc.h"
 
-@class Open_im_sdkUserContext;
+@class Open_im_sdkLoginMgr;
 
-@interface Open_im_sdkUserContext : NSObject <goSeqRefInterface> {
+@interface Open_im_sdkLoginMgr : NSObject <goSeqRefInterface> {
 }
 @property(strong, readonly) _Nonnull id _ref;
 
 - (nonnull instancetype)initWithRef:(_Nonnull id)ref;
-- (nonnull instancetype)init;
+- (nullable instancetype)init;
 - (id<Open_im_sdk_callbackOnAdvancedMsgListener> _Nullable)advancedMsgListener;
+- (id<Open_im_sdk_callbackOnBatchMsgListener> _Nullable)batchMsgListener;
 - (id<Open_im_sdk_callbackOnCustomBusinessListener> _Nullable)businessListener;
-- (id<Open_im_sdk_callbackOnConnListener> _Nullable)connListener;
-// skipped method UserContext.Context with unsupported parameter or return types
+// skipped method LoginMgr.Context with unsupported parameter or return types
 
-// skipped method UserContext.Conversation with unsupported parameter or return types
+// skipped method LoginMgr.Conversation with unsupported parameter or return types
 
 - (id<Open_im_sdk_callbackOnConversationListener> _Nullable)conversationListener;
 - (void)exit;
-// skipped method UserContext.File with unsupported parameter or return types
+// skipped method LoginMgr.File with unsupported parameter or return types
 
 - (id<Open_im_sdk_callbackOnFriendshipListener> _Nullable)friendshipListener;
-// skipped method UserContext.GetLoginStatus with unsupported parameter or return types
+// skipped method LoginMgr.GetLoginStatus with unsupported parameter or return types
 
 - (NSString* _Nonnull)getLoginUserID;
-// skipped method UserContext.Group with unsupported parameter or return types
+- (NSString* _Nonnull)getToken;
+// skipped method LoginMgr.Group with unsupported parameter or return types
 
 - (id<Open_im_sdk_callbackOnGroupListener> _Nullable)groupListener;
-// skipped method UserContext.ImConfig with unsupported parameter or return types
+// skipped method LoginMgr.ImConfig with unsupported parameter or return types
 
-// skipped method UserContext.Info with unsupported parameter or return types
+// skipped method LoginMgr.InitSDK with unsupported parameter or return types
 
-- (void)initResources;
-// skipped method UserContext.InitSDK with unsupported parameter or return types
+// skipped method LoginMgr.Login with unsupported parameter or return types
 
-// skipped method UserContext.Login with unsupported parameter or return types
+// skipped method LoginMgr.Logout with unsupported parameter or return types
 
-// skipped method UserContext.Logout with unsupported parameter or return types
-
-// skipped method UserContext.LongConnMgr with unsupported parameter or return types
+// skipped method LoginMgr.LongConnMgr with unsupported parameter or return types
 
 - (id<Open_im_sdk_callbackOnMessageKvInfoListener> _Nullable)msgKvListener;
-// skipped method UserContext.NetworkStatusChanged with unsupported parameter or return types
+// skipped method LoginMgr.NetworkStatusChanged with unsupported parameter or return types
 
-// skipped method UserContext.Relation with unsupported parameter or return types
+// skipped method LoginMgr.Relation with unsupported parameter or return types
 
 - (void)setAdvancedMsgListener:(id<Open_im_sdk_callbackOnAdvancedMsgListener> _Nullable)advancedMsgListener;
-// skipped method UserContext.SetAppBackgroundStatus with unsupported parameter or return types
+// skipped method LoginMgr.SetAppBackgroundStatus with unsupported parameter or return types
 
+- (void)setBatchMsgListener:(id<Open_im_sdk_callbackOnBatchMsgListener> _Nullable)batchMsgListener;
 - (void)setConversationListener:(id<Open_im_sdk_callbackOnConversationListener> _Nullable)conversationListener;
 - (void)setCustomBusinessListener:(id<Open_im_sdk_callbackOnCustomBusinessListener> _Nullable)listener;
 - (void)setFriendshipListener:(id<Open_im_sdk_callbackOnFriendshipListener> _Nullable)friendshipListener;
@@ -66,10 +65,10 @@
 - (void)setMessageKvInfoListener:(id<Open_im_sdk_callbackOnMessageKvInfoListener> _Nullable)messageKvInfoListener;
 - (void)setUserListener:(id<Open_im_sdk_callbackOnUserListener> _Nullable)userListener;
 - (id<Open_im_sdk_callbackOnSignalingListener> _Nullable)signalingListener;
-// skipped method UserContext.Third with unsupported parameter or return types
+// skipped method LoginMgr.Third with unsupported parameter or return types
 
 - (void)unInitSDK;
-// skipped method UserContext.User with unsupported parameter or return types
+// skipped method LoginMgr.User with unsupported parameter or return types
 
 - (id<Open_im_sdk_callbackOnUserListener> _Nullable)userListener;
 @end
@@ -84,10 +83,10 @@ FOUNDATION_EXPORT NSString* _Nonnull const Open_im_sdkLogoutTips;
 + (void) setErrNotImplemented:(NSError* _Nullable)v;
 
 /**
- * IMUserContext is the global user context instance
+ * UserForSDK Client-independent user class
  */
-+ (Open_im_sdkUserContext* _Nullable) imUserContext;
-+ (void) setImUserContext:(Open_im_sdkUserContext* _Nullable)v;
++ (Open_im_sdkLoginMgr* _Nullable) userForSDK;
++ (void) setUserForSDK:(Open_im_sdkLoginMgr* _Nullable)v;
 
 @end
 
@@ -99,6 +98,11 @@ FOUNDATION_EXPORT void Open_im_sdkAddBlack(id<Open_im_sdk_callbackBase> _Nullabl
 
 FOUNDATION_EXPORT void Open_im_sdkAddFriend(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDReqMsg);
 
+/**
+ * AddUserCommand add to user's favorite
+ */
+FOUNDATION_EXPORT void Open_im_sdkAddUserCommand(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, int32_t Type, NSString* _Nullable uuid, NSString* _Nullable value);
+
 FOUNDATION_EXPORT void Open_im_sdkChangeGroupMemberMute(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID, NSString* _Nullable userID, long mutedSeconds);
 
 FOUNDATION_EXPORT void Open_im_sdkChangeGroupMute(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID, BOOL isMute);
@@ -107,14 +111,10 @@ FOUNDATION_EXPORT void Open_im_sdkChangeInputStates(id<Open_im_sdk_callbackBase>
 
 FOUNDATION_EXPORT void Open_im_sdkCheckFriend(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable userIDList);
 
-FOUNDATION_EXPORT void Open_im_sdkCheckGroupMemberFullSync(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID);
-
-FOUNDATION_EXPORT void Open_im_sdkCheckLocalGroupFullSync(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
-
 /**
  * CheckResourceLoad checks the SDK is resource load status.
  */
-FOUNDATION_EXPORT BOOL Open_im_sdkCheckResourceLoad(Open_im_sdkUserContext* _Nullable userContext, NSString* _Nullable funcName, NSError* _Nullable* _Nullable error);
+FOUNDATION_EXPORT BOOL Open_im_sdkCheckResourceLoad(Open_im_sdkLoginMgr* _Nullable uSDK, NSString* _Nullable funcName, NSError* _Nullable* _Nullable error);
 
 FOUNDATION_EXPORT void Open_im_sdkClearConversationAndDeleteAllMsg(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID);
 
@@ -178,6 +178,11 @@ FOUNDATION_EXPORT void Open_im_sdkDeleteMessage(id<Open_im_sdk_callbackBase> _Nu
 
 FOUNDATION_EXPORT void Open_im_sdkDeleteMessageFromLocalStorage(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, NSString* _Nullable clientMsgID);
 
+/**
+ * DeleteUserCommand delete from user's favorite
+ */
+FOUNDATION_EXPORT void Open_im_sdkDeleteUserCommand(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, int32_t Type, NSString* _Nullable uuid);
+
 FOUNDATION_EXPORT void Open_im_sdkDismissGroup(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID);
 
 FOUNDATION_EXPORT void Open_im_sdkFindMessageList(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable findMessageOptions);
@@ -187,6 +192,11 @@ FOUNDATION_EXPORT void Open_im_sdkGetAdvancedHistoryMessageList(id<Open_im_sdk_c
 FOUNDATION_EXPORT void Open_im_sdkGetAdvancedHistoryMessageListReverse(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable getMessageOptions);
 
 FOUNDATION_EXPORT void Open_im_sdkGetAllConversationList(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
+
+/**
+ * GetAllUserCommands get user's favorite
+ */
+FOUNDATION_EXPORT void Open_im_sdkGetAllUserCommands(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, int32_t Type);
 
 FOUNDATION_EXPORT NSString* _Nonnull Open_im_sdkGetAtAllTag(NSString* _Nullable operationID);
 
@@ -252,8 +262,6 @@ FOUNDATION_EXPORT void Open_im_sdkGetSubscribeUsersStatus(id<Open_im_sdk_callbac
 
 FOUNDATION_EXPORT void Open_im_sdkGetTotalUnreadMsgCount(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
 
-FOUNDATION_EXPORT void Open_im_sdkGetUserClientConfig(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
-
 /**
  * GetUserStatus Get the online status of users.
  */
@@ -298,9 +306,7 @@ FOUNDATION_EXPORT void Open_im_sdkMarkMessagesAsReadByMsgID(id<Open_im_sdk_callb
 
 FOUNDATION_EXPORT void Open_im_sdkNetworkStatusChanged(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID);
 
-FOUNDATION_EXPORT Open_im_sdkUserContext* _Nullable Open_im_sdkNewIMUserContext(void);
-
-FOUNDATION_EXPORT Open_im_sdkUserContext* _Nullable Open_im_sdkNewLoginMgr(void);
+FOUNDATION_EXPORT Open_im_sdkLoginMgr* _Nullable Open_im_sdkNewLoginMgr(void);
 
 FOUNDATION_EXPORT void Open_im_sdkQuitGroup(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable groupID);
 
@@ -331,6 +337,8 @@ FOUNDATION_EXPORT void Open_im_sdkSetAdvancedMsgListener(id<Open_im_sdk_callback
 FOUNDATION_EXPORT void Open_im_sdkSetAppBackgroundStatus(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, BOOL isBackground);
 
 FOUNDATION_EXPORT void Open_im_sdkSetAppBadge(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, int32_t appUnreadCount);
+
+FOUNDATION_EXPORT void Open_im_sdkSetBatchMsgListener(id<Open_im_sdk_callbackOnBatchMsgListener> _Nullable listener);
 
 FOUNDATION_EXPORT void Open_im_sdkSetConversation(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable conversationID, NSString* _Nullable req);
 
@@ -368,7 +376,7 @@ FOUNDATION_EXPORT void Open_im_sdkTransferGroupOwner(id<Open_im_sdk_callbackBase
 
 FOUNDATION_EXPORT void Open_im_sdkTypingStatusUpdate(id<Open_im_sdk_callbackBase> _Nullable callback, NSString* _Nullable operationID, NSString* _Nullable recvID, NSString* _Nullable msgTip);
 
-FOUNDATION_EXPORT void Open_im_sdkUnInitSDK(NSString* _Nullable p0);
+FOUNDATION_EXPORT void Open_im_sdkUnInitSDK(NSString* _Nullable operationID);
 
 /**
  * UnsubscribeUsersStatus Unsubscribe a user's presence.
