@@ -111,7 +111,7 @@ jobs:
           git push origin HEAD --tags
           echo "Successfully pushed commit and tag ${IOS_VERSION} to openim-sdk-core-ios!"
 
-      - name: Trigger open-im-sdk-ios immediate update
+      - name: Trigger Downstream SDKs Immediate Update
         if: env.ALREADY_EXISTS == 'false'
         env:
           GH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
@@ -119,5 +119,10 @@ jobs:
           echo "Dispatching core_updated event to openimsdk/open-im-sdk-ios..."
           gh api repos/openimsdk/open-im-sdk-ios/dispatches \
             -f event_type=core_updated \
-            -f client_payload[tag]="${IOS_VERSION}"
-          echo "Dispatched event successfully for version ${IOS_VERSION}!"
+            -f client_payload[tag]="${IOS_VERSION}" || true
+
+          echo "Dispatching core_updated event to openimsdk/open-im-sdk-flutter..."
+          gh api repos/openimsdk/open-im-sdk-flutter/dispatches \
+            -f event_type=core_updated \
+            -f client_payload[tag]="${IOS_VERSION}" || true
+          echo "Dispatched events successfully for version ${IOS_VERSION}!"
