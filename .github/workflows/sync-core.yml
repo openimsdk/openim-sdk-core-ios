@@ -1,0 +1,123 @@
+name: Sync from openim-sdk-core
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Automatically check every 6 hours
+  workflow_dispatch:
+    inputs:
+      core_tag:
+        description: 'openim-sdk-core Release Tag (e.g. v4.0.0, v3.8.3-patch.15, leave empty for latest)'
+        required: false
+        default: ''
+      target_version:
+        description: 'Custom iOS version (e.g. 4.0.0, 3.8.3-hotfix.15, leave empty to auto-derive)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout openim-sdk-core-ios
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve Tag and Version
+        id: resolve
+        env:
+          INPUT_TAG: ${{ github.event.inputs.core_tag }}
+          INPUT_VERSION: ${{ github.event.inputs.target_version }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # 1. Determine core tag (fetches the latest release, including major versions or pre-releases)
+          if [ -n "$INPUT_TAG" ]; then
+            TAG="$INPUT_TAG"
+          else
+            TAG=$(gh api "repos/openimsdk/openim-sdk-core/releases?per_page=1" --jq '.[0].tag_name')
+          fi
+          echo "CORE_TAG=$TAG" >> $GITHUB_ENV
+          echo "Resolved core release tag: $TAG"
+
+          # 2. Derive iOS version (e.g. v4.0.0 -> 4.0.0, v3.8.3-patch.15 -> 3.8.3-hotfix.15)
+          if [ -n "$INPUT_VERSION" ]; then
+            VERSION="$INPUT_VERSION"
+          else
+            CLEAN_TAG="${TAG#v}"
+            VERSION=$(echo "$CLEAN_TAG" | sed 's/-patch\./-hotfix\./g')
+          fi
+          echo "IOS_VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Derived iOS version: $VERSION"
+
+          # 3. Check if this tag already exists in openim-sdk-core-ios
+          if git rev-parse "$VERSION" >/dev/null 2>&1; then
+            echo "ALREADY_EXISTS=true" >> $GITHUB_ENV
+            echo "Version $VERSION already exists in openim-sdk-core-ios. Skipping."
+          else
+            echo "ALREADY_EXISTS=false" >> $GITHUB_ENV
+          fi
+
+      - name: Download and Update xcframework
+        if: env.ALREADY_EXISTS == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Downloading iOS xcframework from openimsdk/openim-sdk-core release $CORE_TAG..."
+          # Use pattern match to safely handle any file prefix across versions
+          gh release download "$CORE_TAG" -R openimsdk/openim-sdk-core -p "*iOS_xcframework.zip" --clobber
+
+          ZIP_FILE=$(ls *iOS_xcframework.zip 2>/dev/null | head -n 1)
+          if [ -z "$ZIP_FILE" ]; then
+            echo "Error: No *iOS_xcframework.zip found in release $CORE_TAG!"
+            exit 1
+          fi
+
+          echo "Extracting $ZIP_FILE..."
+          rm -rf extracted
+          unzip -q -o "$ZIP_FILE" -d extracted/
+
+          if [ -d "extracted/OpenIMCore.xcframework" ]; then
+            rm -rf Framework/OpenIMCore.xcframework
+            mkdir -p Framework
+            mv extracted/OpenIMCore.xcframework Framework/
+          elif [ -d "extracted/build/OpenIMCore.xcframework" ]; then
+            rm -rf Framework/OpenIMCore.xcframework
+            mkdir -p Framework
+            mv extracted/build/OpenIMCore.xcframework Framework/
+          else
+            echo "Error: OpenIMCore.xcframework not found in extracted archive!"
+            exit 1
+          fi
+
+          rm -rf extracted "$ZIP_FILE"
+
+      - name: Update Podspec
+        if: env.ALREADY_EXISTS == 'false'
+        run: |
+          sed -i '' "s/s.version          = '.*'/s.version          = '${IOS_VERSION}'/g" OpenIMSDKCore.podspec
+          echo "Updated OpenIMSDKCore.podspec to version ${IOS_VERSION}"
+
+      - name: Commit, Tag and Push
+        if: env.ALREADY_EXISTS == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Framework/OpenIMCore.xcframework OpenIMSDKCore.podspec Package.swift
+          git commit -m "fix: https://github.com/openimsdk/openim-sdk-core/releases/tag/${CORE_TAG}"
+          git tag "${IOS_VERSION}"
+          git push origin HEAD --tags
+          echo "Successfully pushed commit and tag ${IOS_VERSION} to openim-sdk-core-ios!"
+
+      - name: Trigger open-im-sdk-ios immediate update
+        if: env.ALREADY_EXISTS == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
+        run: |
+          echo "Dispatching core_updated event to openimsdk/open-im-sdk-ios..."
+          gh api repos/openimsdk/open-im-sdk-ios/dispatches \
+            -f event_type=core_updated \
+            -f client_payload[tag]="${IOS_VERSION}"
+          echo "Dispatched event successfully for version ${IOS_VERSION}!"
