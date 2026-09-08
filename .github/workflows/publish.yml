@@ -1,0 +1,44 @@
+name: Publish OpenIMSDKCore to CocoaPods
+
+# Triggered automatically when sync-core.yml pushes a version tag
+# (e.g. 3.8.3-hotfix.15) after updating the xcframework.
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+*' # Matches 3.8.3-hotfix.14, 3.8.3, 4.0.0, etc.
+
+jobs:
+  publish:
+    runs-on: macos-latest
+    permissions:
+      contents: read
+      issues: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install CocoaPods
+        run: gem install cocoapods --no-document
+
+      - name: Lint Podspec
+        run: |
+          echo "Linting OpenIMSDKCore.podspec for version ${{ github.ref_name }}..."
+          pod lib lint OpenIMSDKCore.podspec --allow-warnings --skip-tests
+
+      - name: Push to CocoaPods Trunk
+        env:
+          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+        run: |
+          echo "Pushing OpenIMSDKCore ${{ github.ref_name }} to CocoaPods trunk..."
+          pod trunk push OpenIMSDKCore.podspec --allow-warnings --skip-tests
+          echo "✅ Successfully published OpenIMSDKCore ${{ github.ref_name }} to CocoaPods!"
+
+      - name: Report Failure via Issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create \
+            --title "🚨 [Publish Failed] OpenIMSDKCore ${{ github.ref_name }} → CocoaPods" \
+            --body "Automated CocoaPods publishing of **OpenIMSDKCore ${{ github.ref_name }}** failed.\n\nPlease inspect the [GitHub Actions run](https://github.com/${{ github.repository }}/actions) logs."
