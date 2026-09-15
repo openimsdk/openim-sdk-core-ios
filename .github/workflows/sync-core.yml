@@ -24,6 +24,7 @@ jobs:
       - name: Checkout openim-sdk-core-ios
         uses: actions/checkout@v4
         with:
+          token: ${{ secrets.DISPATCH_TOKEN }}
           fetch-depth: 0
 
       - name: Resolve Tag and Version
